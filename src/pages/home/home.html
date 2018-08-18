@@ -1,0 +1,16 @@
+<ion-header class="walkthrough-header">
+
+  <ion-navbar>
+   <!--  <ion-title>home</ion-title> -->
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="home-content auth-content">
+  <div class="button-bar">
+  <button ion-button full primary id="login" (click)="goToLogin()">Iniciar sesión</button>
+  <button ion-button full primary class="signup" (click)="goToSignup()">Registrate</button>
+  <button ion-button icon-left full class="facebook-auth-button" (click)="doFacebookSignup()"><ion-icon name="logo-facebook"></ion-icon>Inicar sesión con Facebook</button>
+  </div>
+</ion-content>

@@ -1,0 +1,56 @@
+<!--
+  Generated template for the EstatusPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>estatus</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-row *ngFor="let sol of listaS">
+		<ion-col col-12>
+			<ion-list>
+			  <ion-list-header>
+			    Servicio solicitado:
+			  </ion-list-header>
+			  <ion-item>{{sol.tiposervicio}}</ion-item>
+			  <ion-list-header>
+			    Estatus:
+			  </ion-list-header>
+			  <ion-item>{{sol.estatus}}</ion-item>
+			  <ion-list-header>
+			    Visita programada:
+			  </ion-list-header>
+			  <ion-item>{{sol.fecha}}</ion-item>
+			</ion-list>
+		</ion-col>
+		
+		<ion-col col-12>
+			<ion-list>
+			  <ion-list-header>
+			    Dirección:
+			  </ion-list-header>
+			  <ion-item>{{sol.direccion}}</ion-item>
+			  <ion-list-header>
+			    Cliente:
+			  </ion-list-header>
+			  <ion-item>{{sol.username}}</ion-item>
+			</ion-list>
+
+			<div *ngIf="sol.estatus == 'Cancelado'; then thenBlock else elseBlock"></div>
+				<ng-template #thenBlock><button ion-button color="danger" block (click)="Cancel(sol.id)"  [disabled]=true >Solicitud cancelada</button></ng-template>
+				<ng-template #elseBlock><button ion-button color="danger" block (click)="Cancel(sol.id)" >Cancelar solicitud</button></ng-template> 
+			
+		</ion-col>
+		<ion-col col-12 class="separador">
+			
+		</ion-col>
+	</ion-row>
+</ion-content>

@@ -1,0 +1,61 @@
+login-page {
+	.login-header
+	{
+		@include header-styles(color($colors, walkthrough-header, base), color($colors, walkthrough-header, contrast));
+	}
+
+	.login-content
+	{
+		background-image: url(./../assets/images/fix_it/home/signup-back.png);
+		background-size: cover;
+		background-position: center center;
+
+		.alt-options
+		{
+			padding: 16px 6%;
+    		text-align: center;
+
+    		p{
+    			color: #1d3b5b;
+    		}
+			.button
+			{
+				margin: 0px;
+				padding: 0px;
+				font-size: 1.4rem;
+			}
+
+			.forgot-button
+			{
+				color: #1d3b5b;
+
+				.button-inner
+				{
+					justify-content: flex-start;
+				}
+			}
+		}
+	}
+
+	.auth-content
+	{
+		background-color: white;
+		margin-top: 200px;
+
+		h2{
+			color: #1d3b5b;
+			text-align: center;
+		}
+
+		button{
+			margin: 0px;
+	    	margin-top: 20px;
+		    border-radius: 6px;
+		    color: #FFFFFF;
+		    background-color: #1d3b5b;
+		    font-size: 1.6rem;
+		    font-weight: 500;
+			    
+		}
+	}
+}

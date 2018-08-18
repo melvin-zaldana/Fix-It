@@ -1,0 +1,36 @@
+<ion-header class="login-header">
+  <ion-navbar>
+  
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="login-content">
+  <ion-row class="auth-content">
+    <ion-col>
+  <h2>Iniciar sesión</h2>
+  <form class="login-form auth-form" [formGroup]="login" (ngSubmit)="doLogin(login.value)">
+    <ion-item>
+      <ion-label icon-left><ion-icon name="mail"></ion-icon>Email</ion-label>
+      <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+    </ion-item>
+    <show-hide-container>
+      <ion-item>
+        <ion-label icon-left><ion-icon name="md-key"></ion-icon>Contraseña</ion-label>
+        <ion-input type="password" placeholder="Password" formControlName="password" show-hide-input></ion-input>
+      </ion-item>
+    </show-hide-container>
+    <button ion-button block class="login-button" type="submit" [disabled]="!login.valid">Continuar</button>
+  </form>
+  <label class="error-message">{{errorMessage}}</label>
+</ion-col>
+  </ion-row>
+
+  <ion-row class="alt-options">
+    <ion-col no-padding>
+      <p>¿Haz olvidado tu contraseña</p>
+      <button ion-button clear class="forgot-button" (click)="goToForgotPassword()"><u> Restablecer </u></button>
+    </ion-col>
+    
+  </ion-row>
+  
+</ion-content>

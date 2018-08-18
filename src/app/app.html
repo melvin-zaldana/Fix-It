@@ -1,0 +1,27 @@
+<ion-menu [content]="content" [swipeEnabled]="false">
+  <ion-content class="menu-content">
+    <ion-item class="menu-card">
+      <ion-avatar item-start>
+        <img src="./assets/images/profile/200x200ProfilePic.png">
+      </ion-avatar>
+      <h1 id="nombre_usuario">{{nombre}}</h1>
+    </ion-item>
+    <ion-item class="menu-card-2">
+      <a (click)="goToSettings()"><h2>Editar perfil</h2></a>
+      <h2>Configuración</h2>
+  
+    </ion-item>
+    <ion-list class="menu-list">
+      <button ion-item detail-none *ngFor="let page of pages" (click)="openPage(page)">
+        <ion-icon *ngIf="page.icon" name="{{page.icon}}" item-left></ion-icon>
+        {{page.title}}
+      </button>
+      <button ion-item detail-none *ngFor="let page of pushPages" (click)="pushPage(page)">
+        <ion-icon *ngIf="page.icon" name="{{page.icon}}" item-left></ion-icon>
+        {{page.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>

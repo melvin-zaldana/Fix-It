@@ -1,0 +1,38 @@
+<ion-header class="signup-header auth-header">
+  <ion-navbar>
+    
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="signup-content">
+  <ion-row class="auth-content">
+    <ion-col>
+  <h2>Registrate</h2>
+  <form class="signup-form auth-form" [formGroup]="signup" (ngSubmit)="doSignup(signup.value)">
+    <ion-item>
+      <ion-label icon-left><ion-icon name="person"></ion-icon>Nombre</ion-label>
+      <ion-input type="text" placeholder="Nombre" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label icon-left><ion-icon name="phone-portrait"></ion-icon>Teléfono</ion-label>
+      <ion-input type="text" placeholder="Teléfono" formControlName="phone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label icon-left><ion-icon name="mail"></ion-icon>Email</ion-label>
+      <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+    </ion-item>
+    <show-hide-container>
+      <ion-item>
+        <ion-label icon-left><ion-icon name="md-key"></ion-icon>Contraseña</ion-label>
+        <ion-input type="password" placeholder="Password" formControlName="password" show-hide-input></ion-input>
+      </ion-item>
+    </show-hide-container>
+    <button ion-button block class="signup-button" type="submit" [disabled]="!signup.valid">Continuar</button>
+  </form>
+  <label class="error-message">{{errorMessage}}</label>
+  <p class="legal-stuff">
+    {{'AGREEMENT_TEXT' | translate}} <a class="legal-action" (click)="showPrivacyModal()">{{'PRIVACY_POLICY' | translate}}</a> {{'AND' | translate}} <a class="legal-action" (click)="showTermsModal()">{{'TERMS_OF_USE' | translate}}</a>
+  </p>
+  </ion-col>
+  </ion-row>
+</ion-content>

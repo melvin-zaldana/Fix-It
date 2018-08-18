@@ -1,0 +1,239 @@
+<!--
+  Generated template for the ConstruccionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Construcción</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="construccion-content" padding>
+<ion-slides #formSlider >
+  	<ion-slide>
+	<ion-row>
+		<ion-col col-4></ion-col>
+		<ion-col col-4>
+			<ion-img class="icono" width="100" height="100" src="./../assets/images/fix_it/servicios/construccion-icono.png"></ion-img>
+		</ion-col>
+		<ion-col col-4></ion-col>
+	</ion-row>
+	<ion-row>
+		<ion-col col-3></ion-col>
+		<ion-col text-center col-6>
+			<h2 class="heading1">Servicio de</h2>
+      		<h1 class="heading2">Construcción</h1>
+		</ion-col>
+		<ion-col col-3></ion-col>
+	</ion-row>
+	<ion-row>
+		<ion-col col-2>
+			<ion-img class="icono" width="37" height="37" src="./../assets/images/fix_it/servicios/icono-servicios.png"></ion-img>
+		</ion-col>	
+		<ion-col col-10>
+			<h4 class="heading3" text-left>Servicios disponibles</h4>	
+		</ion-col>
+	</ion-row>
+
+	<form [formGroup]="servicioForm">
+		<ion-list class="checkbox-list">
+        <ion-item class="checkbox-item">
+          <ion-label>Construcción de Cochera</ion-label>
+          <ion-checkbox formControlName="opcion_1"></ion-checkbox>
+        </ion-item>
+        <ion-item class="checkbox-item">
+          <ion-label>Construcción de Terraza</ion-label>
+          <ion-checkbox formControlName="opcion_2"></ion-checkbox>
+        </ion-item>
+        <ion-item class="checkbox-item">
+          <ion-label>Construcción de Cisterna</ion-label>
+          <ion-checkbox formControlName="opcion_3"></ion-checkbox>
+        </ion-item>
+        <ion-item class="checkbox-item">
+          <ion-label>Otros</ion-label>
+          <ion-checkbox formControlName="opcion_4"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+
+		<ion-item>
+          <ion-textarea rows="4" class="descripcion" placeholder="Describe de forma detallada..." formControlName="description"></ion-textarea>
+        </ion-item>
+        <button ion-button block class="signup-button" (click)="next()" [disabled]="!servicioForm.valid" >Siguiente</button>
+  </form> 
+
+  </ion-slide>
+
+  <ion-slide>
+
+      <ion-row>
+    <ion-col col-4></ion-col>
+    <ion-col col-4>
+      <ion-img class="icono" width="100" height="100" src="./../assets/images/fix_it/servicios/construccion-icono.png"></ion-img>
+    </ion-col>
+    <ion-col col-4></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-3></ion-col>
+    <ion-col text-center col-6>
+      <h2 class="heading1">Servicio de</h2>
+          <h1 class="heading2">Construcción</h1>
+    </ion-col>
+    <ion-col col-3></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-2>
+      <ion-img class="icono" width="37" height="37" src="./../assets/images/fix_it/servicios/icono-servicios.png"></ion-img>
+    </ion-col>  
+    <ion-col col-10>
+      <p class="heading5" text-left>Descripción de la construcción a realizar</p> 
+    </ion-col>
+    <ion-col>
+    <form [formGroup]="servicioForm2">
+        <ion-row>
+        <ion-col>
+        <ion-textarea rows="4" class="descripcion" placeholder="Describe de forma detallada..." formControlName="description2"></ion-textarea>
+      </ion-col>
+      </ion-row>
+    </form> 
+  </ion-col>
+</ion-row>
+<ion-row>
+<ion-col col-12>
+ <ion-row>
+    <ion-col col-2>
+      <ion-img class="icono" width="37" height="37" src="./../assets/images/fix_it/servicios/camara.png"></ion-img>
+    </ion-col>  
+    <ion-col col-10>
+      <p class="heading5" text-left>Agregar fotografías</p> 
+    </ion-col>
+  </ion-row>
+        <ion-row>
+    		<ion-col col-3>
+    			<button *ngIf="!selected_image" ion-button block large class="upload-image-button" (click)="takePhoto()">
+            	<ion-icon name="camera"></ion-icon>
+            	<!-- <h3 class="button-title">{{'UPLOAD_AN_IMAGE' | translate}}</h3> -->
+        	</button>
+        		<preload-image *ngIf="selected_image" [ratio]="{w:1, h:1}" [src]="selected_image" alt="this is the image" title="IMAGE!"></preload-image>
+    		</ion-col>
+    		<ion-col col-3>
+    			<button *ngIf="!selected_image" ion-button block large class="upload-image-button" (click)="takePhoto()">
+            	<ion-icon name="camera"></ion-icon>
+            	<!-- <h3 class="button-title">{{'UPLOAD_AN_IMAGE' | translate}}</h3> -->
+        	</button>
+        		<preload-image *ngIf="selected_image" [ratio]="{w:1, h:1}" [src]="selected_image" alt="this is the image" title="IMAGE!"></preload-image>
+    		</ion-col>
+    		<ion-col col-3>
+    			<button *ngIf="!selected_image" ion-button block large class="upload-image-button" (click)="takePhoto()">
+            	<ion-icon name="camera"></ion-icon>
+            	
+        	</button>
+        		<preload-image *ngIf="selected_image" [ratio]="{w:1, h:1}" [src]="selected_image" alt="this is the image" title="IMAGE!"></preload-image>
+    		</ion-col>
+    		<ion-col col-3>
+    			<button *ngIf="!selected_image" ion-button block large class="upload-image-button" (click)="takePhoto()">
+            	<ion-icon name="camera"></ion-icon>
+            	
+        	</button>
+        		<preload-image *ngIf="selected_image" [ratio]="{w:1, h:1}" [src]="selected_image" alt="this is the image" title="IMAGE!"></preload-image>
+              
+    		</ion-col>
+  		</ion-row>
+      <button ion-button block class="signup-button" (click)="next()" [disabled]="!servicioForm2.valid">Siguiente</button>
+</ion-col>
+</ion-row>
+	</ion-slide>
+
+	<ion-slide>
+    <ion-row>
+		<ion-col col-4></ion-col>
+		<ion-col col-4>
+			<ion-img class="icono" width="100" height="100" src="./../assets/images/fix_it/servicios/icono-prioridad.png"></ion-img>
+		</ion-col>
+		<ion-col col-4></ion-col>
+	</ion-row>
+	<ion-row>
+		<ion-col col-3></ion-col>
+		<ion-col text-center col-6>
+			<h2 class="heading1">Nivel de</h2>
+      		<h1 class="heading2">Prioridad</h1>
+		</ion-col>
+		<ion-col col-3></ion-col>
+	</ion-row>
+	<ion-row>
+		<ion-col text-center>
+			<h4 class="heading4" text-center >Seleccione un nivel:</h4>	
+		</ion-col>
+	</ion-row>
+<ion-row>
+    <ion-col>
+	<form [formGroup]="servicioForm3">
+		<ion-list class="radio-group" radio-group formControlName="selected_option">
+
+        <ion-item>
+    	<ion-label><ion-img class="puntos" width="45" height="16" src="./../assets/images/fix_it/servicios/puntos-1.png"></ion-img>PRIORIDAD ALTA</ion-label>
+   		 <ion-radio  value="PRIORIDAD ALTA"></ion-radio>
+		  </ion-item>
+  		<ion-item>
+   		 <ion-label><ion-img class="puntos" width="45" height="16" src="./../assets/images/fix_it/servicios/punto-2.png"></ion-img>PRIORIDAD MEDIA</ion-label>
+    		<ion-radio  value="PRIORIDAD MEDIA" ></ion-radio>
+  		</ion-item>
+  		<ion-item>
+  		<ion-label><ion-img class="puntos" width="45" height="16" src="./../assets/images/fix_it/servicios/puntos.png"></ion-img>PRIORIDAD BAJA</ion-label>
+    		<ion-radio  value="PRIORIDAD BAJA" ></ion-radio>
+  		</ion-item>
+      </ion-list>
+      <button ion-button block class="signup-button" (click)="next()" >Siguiente</button>
+  	</form>
+</ion-col>
+  </ion-row>
+    
+  </ion-slide>
+
+  <ion-slide>
+    <h4 class="">Agenda el día y hora de visita</h4>
+  
+    <h1>{{ viewTitle }}</h1>
+    <calendar [eventSource]="eventSource"
+        [calendarMode]="calendar.mode"
+        [currentDate]="calendar.currentDate"
+        [showEventDetail]="false"
+        (onEventSelected)="onEventSelected($event)"
+        (onTitleChanged)="onViewTitleChanged($event)"
+        (onTimeSelected)="onTimeSelected($event)"
+        step="30"
+        [markDisabled]="markDisabled"
+        class="calendar">
+      </calendar>
+      <ion-icon name="ios-more"></ion-icon>
+      <ion-row>
+  <ion-col>
+       <form [formGroup]="servicioForm4" class="tiempoForm" >
+          <h4 class="">Selecciona un intervalo de tiempo</h4>
+          <ion-row no-padding class="multi-input-row">
+            
+            <ion-col no-padding width-50>
+              <ion-item class="multi-input time-item">
+                <ion-datetime formControlName="from_time" displayFormat="h mm a" pickerFormat="h mm A"></ion-datetime>
+              </ion-item>
+            </ion-col>
+             <ion-col no-padding width-50>
+              <ion-item class="multi-input time-item">
+                <ion-datetime formControlName="to_time" displayFormat="h mm a" pickerFormat="h mm A"></ion-datetime>
+              </ion-item>
+            </ion-col>
+
+          </ion-row>
+      
+      	</form>
+    <button ion-button block  (click)="save()" >Agendar</button>
+    </ion-col>
+  </ion-row>
+  </ion-slide>
+</ion-slides>
+  	
+</ion-content>

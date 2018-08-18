@@ -1,0 +1,48 @@
+signup-page {
+	.signup-header
+	{
+		@include header-styles(color($colors, walkthrough-header, base), color($colors, walkthrough-header, contrast));
+	}
+
+	.signup-content
+	{
+		background-image: url(./../assets/images/fix_it/home/signup-back.png);
+		background-size: cover;
+		background-position: center center;
+
+		.legal-stuff
+		{
+			color: $white-d;
+			text-align: center;
+			margin: 10px 12px;
+
+			.legal-action
+			{
+				font-weight: 500;
+				color: $theme-color-2;
+			}
+		}
+	}
+
+	.auth-content
+	{
+		background-color: white;
+		margin-top: 200px;
+
+		h2{
+			color: #1d3b5b;
+			text-align: center;
+		}
+
+		button{
+			margin: 0px;
+    		margin-top: 20px;
+		    border-radius: 6px;
+		    color: #FFFFFF;
+		    background-color: #1d3b5b;
+		    font-size: 1.6rem;
+		    font-weight: 500;
+		    
+		}
+	}
+}

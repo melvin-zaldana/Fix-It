@@ -1,0 +1,123 @@
+walkthrough-page {
+	.walkthrough-header
+	{
+		@include header-styles(color($colors, walkthrough-header, base), color($colors, walkthrough-header, contrast));
+	}
+
+	.walkthrough-content
+	{
+		// Default background when bouncing isn't disabled
+		background-color: color($colors, walkthrough, base);
+
+		.scroll-content
+		{
+			margin: 0px !important;
+		}
+
+		ion-slide:nth-child(odd)
+		{
+			background-color: color($colors, walkthrough, base);
+			color: color($colors, walkthrough, contrast);
+		}
+
+		ion-slide:nth-child(even)
+		{
+			background-color: color($colors, walkthrough-alt, base);
+			color: color($colors, walkthrough-alt, contrast);
+		}
+
+		.swiper-pagination-bullet
+		{
+		  background: $white;
+			opacity: .5;
+
+			&.swiper-pagination-bullet-active
+			{
+			  opacity: 1;
+			}
+		}
+
+		ion-slides {
+
+			ion-slide {
+				align-items: flex-start;
+			}
+
+			.intro-image-row
+			{
+				justify-content: center;
+				margin-top: 90px;
+				margin-top: 16vh;
+			}
+
+			.main-title
+			{
+				margin: 35px 20px 20px;
+				font-size: 3.4rem;
+				font-weight: 900;
+				font-style: italic;
+				text-align: center;
+				color: $white;
+			}
+
+			.intro-text
+			{
+				margin: 0px 20%;
+				font-size: 1.4rem;
+				line-height: 1.35;
+				text-align: center;
+				color: $white;
+			}
+		}
+
+		.slide-4
+		{
+			background-image: url(./../assets/images/fix_it/walk/walk_02.png);
+			background-size: cover;
+			background-position: center center;
+
+			.main-title
+			{
+				margin-top: 15px;
+			}
+
+			.button-bar
+			{
+				
+				position: absolute;
+				bottom: 50px;
+				width: 80%;
+				left: 10%;
+				right: 10%;
+
+				& > .button
+				{
+					@include segment-text-styles(color($colors, button-alt, base));
+					background-color: color($colors, button-alt, contrast);
+					margin: 0px;
+					border-radius: 0px;
+					flex:1;
+					color: #1d3b5b;
+					padding-top: 25px;
+					padding-bottom: 25px;
+
+					&:first-child
+					{
+					  border-radius: 6px;
+
+					}
+				}
+			}
+		}
+
+		.slide-1{
+			background-image: url(./../assets/images/fix_it/walk/walk_01.png);
+			background-size: cover;
+			background-position: center center;
+		}
+
+		.swiper-pagination-bullets{
+			/*bottom: 270px;*/
+		}
+	}
+}

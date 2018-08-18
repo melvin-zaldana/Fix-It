@@ -1,0 +1,32 @@
+<ion-header class="listing-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="listing-content">  
+  <ion-row>
+    <ion-col>
+      <h1 class="heading1">¿Qué tipo de</h1>
+      <h1 class="heading2">servicio necesitás?</h1>
+      <p class="heading3">Selecciona un tipo de servicio</p>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="grid-3 grid-example">
+    <ion-col width-50 class="grid-item" *ngFor="let category of listing.categories">
+      <div class="grid-item-wrapper" (click)="goToFeed(category)">
+        <div text-center class="grid-item-inner">
+          <!-- <ion-img width="56" height="56" [src]="category.image"></ion-img> -->
+          <preload-image class="list-serv" [ratio]="{w:1, h:1}" [src]="category.image"></preload-image>
+        </div>
+      </div>
+      <p class="item-title-2">{{category.title}}</p>
+    </ion-col>
+  </ion-row>
+</ion-content>

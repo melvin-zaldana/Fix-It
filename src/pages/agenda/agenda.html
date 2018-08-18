@@ -1,0 +1,65 @@
+<!--
+  Generated template for the AgendaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>agenda</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content  class="agenda-content" padding>
+
+  <ion-row>
+    <ion-col text-center>
+      <ng-template #template let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
+      <div class="event-detail-container" has-bouncing="false" *ngIf="showEventDetail" overflow-scroll="false">
+                <ion-list *ngFor="let event of selectedDate?.events" (click)="eventSelected(event)">
+                        <h4 *ngIf="event.allDay" class="monthview-eventdetail-timecolumn">All day</h4>
+                       <ion-list-header class="event-detail"> {{event.title}}</ion-list-header>
+                        <ion-item>
+                        <h4>Visita programada: </h4>
+                        <p *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">{{event.fecha |date: 'EEEE dd MMMM, yyyy'}}
+                        </p>
+                        </ion-item>
+
+                        <ion-item>
+                        <h4>Hora: </h4>
+                        <p *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">{{event.startTime|date: 'HH:mm'}} - {{event.endTime|date: 'HH:mm a'}}
+                        </p>
+                        </ion-item>
+
+                        <ion-item>
+                        <h4>Dirección: </h4>
+                        <p *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">{{event.direccion}}
+                        </p>
+                        </ion-item>
+                </ion-list>
+                <ion-item *ngIf="selectedDate?.events.length==0">
+                    <div class="no-events-label">Sin solicitudes</div>
+                </ion-item>
+            </div>
+      </ng-template>
+
+
+  <h1>{{ viewTitle }}</h1>
+
+  <calendar 
+        [eventSource]="eventSource"
+        [calendarMode]="calendar.mode"
+        [currentDate]="calendar.currentDate"
+        [monthviewEventDetailTemplate]="template"
+        (onEventSelected)="onEventSelected($event)"
+        (onTitleChanged)="onViewTitleChanged($event)"
+        (onTimeSelected)="onTimeSelected($event)"
+        step="30"
+        class="calendar">
+      </calendar>
+    </ion-col>
+  </ion-row>
+</ion-content>

@@ -1,0 +1,47 @@
+page-home {
+	.walkthrough-header
+	{
+		@include header-styles(color($colors, walkthrough-header, base), color($colors, walkthrough-header, contrast));
+	}
+
+	.home-content
+	{
+		background-image: url(./../assets/images/fix_it/walk/Home.png);
+		background-size: cover;
+		background-position: center center;
+
+		.button-bar
+			{
+				
+				position: absolute;
+				bottom: 80px;
+				width: 80%;
+				left: 10%;
+				right: 10%;
+
+				& > .button
+				{
+					border-radius: 10px;
+					padding-top: 25px;
+					padding-bottom: 25px;
+
+				}
+
+				#login
+				{
+					background-color: white;
+					color: #1d3b5b;
+					margin-bottom: 10px;
+				}
+
+				.signup
+				{
+					background-color: #1d3b5b;
+					color: white;	
+					margin-bottom: 25px;
+				}
+
+
+			}
+	}
+}
