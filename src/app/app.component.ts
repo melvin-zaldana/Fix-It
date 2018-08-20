@@ -18,7 +18,7 @@ import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
 
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
-import { FirebaseService } from '../pages/firebase-integration/firebase-integration.service';
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +32,7 @@ export class MyApp {
   rootPage: any = WalkthroughPage;
   // rootPage: any = TabsNavigationPage;
   textDir: string = "ltr";
+  nombre: string;
 
   pages: Array<{title: any, icon: string, component: any}>;
   pushPages: Array<{title: any, icon: string, component: any}>;
@@ -45,8 +46,15 @@ export class MyApp {
     public statusBar: StatusBar,
     public translate: TranslateService,
     public toastCtrl: ToastController,
-    public firestoreService: FirebaseService
+    public events: Events
   ) {
+
+    events.subscribe('user:created', (user, time) => {
+    // user and time are the same arguments passed in `events.publish(user, time)`
+    this.nombre = user;
+    console.log('Welcome', user, 'at', time);
+  });
+
     translate.setDefaultLang('es');
     translate.use('es');
     
@@ -133,6 +141,10 @@ export class MyApp {
     this.app.getRootNav().push(SettingsPage);
   }
 
+  setName(name){
+    this.nombre="Guillermo";
+    console.log("se cambio nombre" +name);
+  }
 
 
 }

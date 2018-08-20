@@ -197,6 +197,7 @@ export class SettingsPage {
     })
   }
 
+//-----Carga datos del usuario almacenado en firestore
   loadData(){
     
 

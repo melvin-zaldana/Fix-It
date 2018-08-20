@@ -7,7 +7,8 @@ import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { FirebaseAuthService } from '../firebase-integration/firebase-auth.service';
 
 import { ListingPage } from '../listing/listing';
-
+import { Events } from 'ionic-angular';
+import { FirebaseService } from '../firebase-integration/firebase-integration.service';
 
 
 @Component({
@@ -23,7 +24,9 @@ export class LoginPage {
   constructor(
     public nav: NavController,
     public loadingCtrl: LoadingController,
-    public fAuthService: FirebaseAuthService
+    public fAuthService: FirebaseAuthService,
+    public firestoreService: FirebaseService,
+    public events: Events
   ) {
     //this.main_page = { component: TabsNavigationPage };
     this.main_page = { component: ListingPage };
@@ -38,6 +41,7 @@ export class LoginPage {
     this.fAuthService.doLogin(value)
     .then(res =>{
       //this.nav.push(FirebaseTabsNavigationPage);
+      this.loadData();
       this.nav.setRoot(this.main_page.component);
     }, err => this.errorMessage = err.message)
   }
@@ -45,6 +49,22 @@ export class LoginPage {
 
   goToForgotPassword() {
     this.nav.push(ForgotPasswordPage);
+  }
+
+//-----Carga los valores del usuario 
+  loadData(){
+    this.firestoreService.getDatos()
+    .then(data => {
+      this.usuarios = data;
+      //console.log(data.nombre);
+      this.createUser(data.nombre);
+    })
+  }
+
+//----- metodo para pasar el nombre de usuario despues del login a app.html por medio de event
+  createUser(user) {
+  console.log('User created!')
+  this.events.publish('user:created', user, Date.now());
   }
 
 }
