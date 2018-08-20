@@ -33,6 +33,7 @@ export class MyApp {
   // rootPage: any = TabsNavigationPage;
   textDir: string = "ltr";
   nombre: string;
+  photoURL: string;
 
   pages: Array<{title: any, icon: string, component: any}>;
   pushPages: Array<{title: any, icon: string, component: any}>;
@@ -49,10 +50,12 @@ export class MyApp {
     public events: Events
   ) {
 
-    events.subscribe('user:created', (user, time) => {
+    //----escucha el evento en login y signup para mostrar nombre y foto
+    events.subscribe('user:created', (user, photo) => {
     // user and time are the same arguments passed in `events.publish(user, time)`
     this.nombre = user;
-    console.log('Welcome', user, 'at', time);
+    this.photoURL = photo;
+    
   });
 
     translate.setDefaultLang('es');

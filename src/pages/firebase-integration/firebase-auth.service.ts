@@ -168,7 +168,8 @@ export class FirebaseAuthService {
         nombre: value.name,
         telefono: value.phone,
         correo: value.email,
-        direccion: "Ingresa tu dirección"
+        direccion: "Ingresa tu dirección",
+        photoURL: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
       })
       .then(
         res => resolve(res),

@@ -205,6 +205,7 @@ export class SettingsPage {
     .then(data => {
       this.usuarios = data;
       //console.log(data.nombre);
+      this.profile.user.image = data.photoURL;
        this.settingsForm.patchValue({
         name: data.nombre,
         phone: data.telefono,

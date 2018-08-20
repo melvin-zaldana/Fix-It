@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 
-import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { FirebaseAuthService } from '../firebase-integration/firebase-auth.service';
 
@@ -55,16 +54,16 @@ export class LoginPage {
   loadData(){
     this.firestoreService.getDatos()
     .then(data => {
-      this.usuarios = data;
+      //this.usuarios = data;
       //console.log(data.nombre);
-      this.createUser(data.nombre);
+      this.createUser(data.nombre,data.photoURL);
     })
   }
 
 //----- metodo para pasar el nombre de usuario despues del login a app.html por medio de event
-  createUser(user) {
+  createUser(user,photo) {
   console.log('User created!')
-  this.events.publish('user:created', user, Date.now());
+  this.events.publish('user:created', user, photo);
   }
 
 }

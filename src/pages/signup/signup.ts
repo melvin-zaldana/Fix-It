@@ -6,9 +6,11 @@ import { TermsOfServicePage } from '../terms-of-service/terms-of-service';
 import { PrivacyPolicyPage } from '../privacy-policy/privacy-policy';
 
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
+import { ListingPage } from '../listing/listing';
 
 import { FirebaseAuthService } from '../firebase-integration/firebase-auth.service';
-
+import { FirebaseService } from '../firebase-integration/firebase-integration.service';
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'signup-page',
@@ -24,9 +26,12 @@ export class SignupPage {
     public nav: NavController,
     public modal: ModalController,
     public loadingCtrl: LoadingController,
-    public fAuthService: FirebaseAuthService
+    public fAuthService: FirebaseAuthService,
+    public firestoreService: FirebaseService,
+    public events: Events
   ) {
-    this.main_page = { component: TabsNavigationPage };
+    //this.main_page = { component: TabsNavigationPage };
+    this.main_page = { component: ListingPage };
 
     this.signup = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -44,6 +49,7 @@ export class SignupPage {
       this.fAuthService.doLogin(value)
       .then(res => {
         //this.nav.push(FirebaseTabsNavigationPage);
+        this.loadData();
         this.nav.setRoot(this.main_page.component);
         this.loading.dismiss();
       }, error => this.errorMessage = error.message)
@@ -61,6 +67,22 @@ export class SignupPage {
   showPrivacyModal() {
     let modal = this.modal.create(PrivacyPolicyPage);
     modal.present();
+  }
+
+  //-----Carga los valores del usuario 
+  loadData(){
+    this.firestoreService.getDatos()
+    .then(data => {
+      //this.usuarios = data;
+      //console.log(data.nombre);
+      this.createUser(data.nombre,data.photoURL);
+    })
+  }
+
+//----- metodo para pasar el nombre de usuario despues del login a app.html por medio de event
+  createUser(user,photo) {
+  console.log('User created on Signup!')
+  this.events.publish('user:created', user, photo);
   }
 
 }

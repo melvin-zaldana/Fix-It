@@ -4,8 +4,6 @@ import { ListingPage } from '../listing/listing';
 import { ProfilePage } from '../profile/profile';
 import { NotificationsPage } from '../notifications/notifications';
 
-import * as firebase from 'firebase/app';
-import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
   selector: 'tabs-navigation',
