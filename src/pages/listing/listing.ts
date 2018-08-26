@@ -9,6 +9,7 @@ import { ListingService } from './listing.service';
 
 import { ConstruccionPage } from '../construccion/construccion';
 import { RemodelacionPage } from '../remodelacion/remodelacion';
+import { ReparacionPage } from '../reparacion/reparacion';
 
 
 @Component({
@@ -47,13 +48,16 @@ export class ListingPage {
     console.log("Categoria", category.title);
     let cons:string = "Construcción";
     let remo:string = "Remodelación";
+    let repa:string = "Reparación";
+
     if(cons === category.title){
       this.nav.push(ConstruccionPage);
-    }if(remo === category.title){
+    } else if(remo === category.title){
       this.nav.push(RemodelacionPage);
+    }else if(repa === category.title){
+      this.nav.push(ReparacionPage);
     }else{
       console.log("NAAAA");
-      this.nav.push(FeedPage, { category: category });
     }
 
   }

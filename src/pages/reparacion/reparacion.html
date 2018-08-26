@@ -7,19 +7,19 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Remodelación</ion-title>
+    <ion-title>Reparación</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content class="remodelacion-content" padding>
+<ion-content class="reparacion-content" padding>
 <ion-slides #formSlider >
   	<ion-slide>
 	<ion-row>
 		<ion-col col-4></ion-col>
 		<ion-col col-4>
-			<ion-img class="icono" width="100" height="100" src="././assets/images/fix_it/servicios/remodelacion-icono.png"></ion-img>
+			<ion-img class="icono" width="100" height="100" src="././assets/images/fix_it/servicios/reparacion-icono.png"></ion-img>
 		</ion-col>
 		<ion-col col-4></ion-col>
 	</ion-row>
@@ -27,7 +27,7 @@
 		<ion-col col-3></ion-col>
 		<ion-col text-center col-6>
 			<h2 class="heading1">Servicio de</h2>
-      		<h1 class="heading2">Remodelación</h1>
+      		<h1 class="heading2">Repación</h1>
 		</ion-col>
 		<ion-col col-3></ion-col>
 	</ion-row>
@@ -43,24 +43,44 @@
 	<form [formGroup]="servicioForm">
 		<ion-list class="checkbox-list">
         <ion-item class="checkbox-item">
-          <ion-label>Remodelación de Fachada</ion-label>
+          <ion-label>Servicio de Albañilería</ion-label>
           <ion-checkbox formControlName="opcion_1"></ion-checkbox>
         </ion-item>
         <ion-item class="checkbox-item">
-          <ion-label>Remodelación de Cochera</ion-label>
+          <ion-label>Servicio de Carpinteria</ion-label>
           <ion-checkbox formControlName="opcion_2"></ion-checkbox>
         </ion-item>
         <ion-item class="checkbox-item">
-          <ion-label>Remodelación de Cocina</ion-label>
+          <ion-label>Servicio de Cerrajería</ion-label>
           <ion-checkbox formControlName="opcion_3"></ion-checkbox>
         </ion-item>
         <ion-item class="checkbox-item">
-          <ion-label>Remodelación de Dormitorio</ion-label>
+          <ion-label>Servicio de Electricidad</ion-label>
           <ion-checkbox formControlName="opcion_4"></ion-checkbox>
         </ion-item>
         <ion-item class="checkbox-item">
-          <ion-label>Otros</ion-label>
+          <ion-label>Servicio de Fontanería</ion-label>
           <ion-checkbox formControlName="opcion_5"></ion-checkbox>
+        </ion-item>
+        <ion-item class="checkbox-item">
+          <ion-label>Servicio de Pintura</ion-label>
+          <ion-checkbox formControlName="opcion_6"></ion-checkbox>
+        </ion-item>
+        <ion-item class="checkbox-item">
+          <ion-label>Servicio de Jardinería</ion-label>
+          <ion-checkbox formControlName="opcion_7"></ion-checkbox>
+        </ion-item>
+        <ion-item class="checkbox-item">
+          <ion-label>Servicio de Vidriería</ion-label>
+          <ion-checkbox formControlName="opcion_8"></ion-checkbox>
+        </ion-item>
+        <ion-item class="checkbox-item">
+          <ion-label>Servicio de Bombas y Cisternas</ion-label>
+          <ion-checkbox formControlName="opcion_9"></ion-checkbox>
+        </ion-item>
+        <ion-item class="checkbox-item">
+          <ion-label>Otros</ion-label>
+          <ion-checkbox formControlName="opcion_10"></ion-checkbox>
         </ion-item>
       </ion-list>
 
@@ -77,7 +97,7 @@
       <ion-row>
     <ion-col col-4></ion-col>
     <ion-col col-4>
-      <ion-img class="icono" width="100" height="100" src="././assets/images/fix_it/servicios/remodelacion-icono.png"></ion-img>
+      <ion-img class="icono" width="100" height="100" src="././assets/images/fix_it/servicios/reparacion-icono.png"></ion-img>
     </ion-col>
     <ion-col col-4></ion-col>
   </ion-row>
@@ -85,7 +105,7 @@
     <ion-col col-3></ion-col>
     <ion-col text-center col-6>
       <h2 class="heading1">Servicio de</h2>
-          <h1 class="heading2">Remodelación</h1>
+          <h1 class="heading2">Reparación</h1>
     </ion-col>
     <ion-col col-3></ion-col>
   </ion-row>
@@ -94,7 +114,7 @@
       <ion-img class="icono" width="37" height="37" src="././assets/images/fix_it/servicios/icono-servicios.png"></ion-img>
     </ion-col>  
     <ion-col col-10>
-      <p class="heading5" text-left>Descripción de la remodelación a realizar</p> 
+      <p class="heading5" text-left>Descripción de la reparación a realizar</p> 
     </ion-col>
     <ion-col>
     <form [formGroup]="servicioForm2">
