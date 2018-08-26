@@ -141,12 +141,14 @@ export class FirebaseService {
     })
   }
 
-  createConstruccion(form1, form2, form3, form4, fecha, nombre, direccion){
+  createConstruccion(form1, form2, form3, form4, fecha, nombre, direccion, imagenes){
     return new Promise<any>((resolve, reject) => {
       var opcion1 ="";
       var opcion2 ="";
       var opcion3 ="";
       var opcion4 ="";
+      var imgURLs = [];
+      var resolvedPromisesArray = [];
       
       let user = firebase.auth().currentUser.uid;
       let idS = this.afs.createId();
@@ -162,6 +164,19 @@ export class FirebaseService {
       if(form1.opcion_4){
         opcion4="Otros";
       }
+
+       for (var i = 0; i < imagenes.length; i++) {
+        resolvedPromisesArray.push( this.uploadImage(imagenes[i])
+        .then(URL =>{
+          imgURLs.push(URL);
+        }));
+      }
+
+     
+      
+      // wait for all uploadTasks to be done
+      Promise.all(resolvedPromisesArray).then(() => {
+
       this.afs.collection('/solicitudes').doc(idS).set({
         id : idS,
         userid: user,
@@ -169,7 +184,7 @@ export class FirebaseService {
         tiposervicio: opcion1 + " " + opcion2 + " " + opcion3+ " " + opcion4,
         descripcion: form1.description,
         descripcion2: form2.description2,
-        imagenes: "foto de la construcción",
+        imagenes: imgURLs[0] + ","+imgURLs[1]+ ","+imgURLs[2],
         prioridad: form3.selected_option,
         fecha: fecha,
         horainicio: form4.from_time,
@@ -182,23 +197,80 @@ export class FirebaseService {
         res => resolve(res),
         err => reject(err)
       )
+
+      })
+
+      
     })
   }
 
-  uploadImage(personId, imageURI){
+  createRemodelacion(form1, form2, form3, form4, fecha, nombre, direccion, imagenes){
     return new Promise<any>((resolve, reject) => {
-      let storageRef = firebase.storage().ref();
-      let imageRef = storageRef.child('solicitudes').child(personId).child('image');
-      this.encodeImageUri(imageURI, function(image64){
-        imageRef.putString(image64, 'data_url')
-        .then(snapshot => {
-          resolve(snapshot.downloadURL)
-        }, err => {
-          reject(err);
-        })
+      var opcion1 ="";
+      var opcion2 ="";
+      var opcion3 ="";
+      var opcion4 ="";
+      var opcion5 ="";
+      var imgURLs = [];
+      var resolvedPromisesArray = [];
+      
+      let user = firebase.auth().currentUser.uid;
+      let idS = this.afs.createId();
+      if(form1.opcion_1){
+        opcion1="Remodelación de Fachada";
+      }
+      if(form1.opcion_2){
+        opcion2="Remodelación de Cochera";
+      }
+      if(form1.opcion_3){
+        opcion3="Remodelación de Cocina";
+      }
+      if(form1.opcion_4){
+        opcion4="Remodelación de Dormitorio";
+      }
+      if(form1.opcion_5){
+        opcion5="Otros";
+      }
+
+       for (var i = 0; i < imagenes.length; i++) {
+        resolvedPromisesArray.push( this.uploadImage(imagenes[i])
+        .then(URL =>{
+          imgURLs.push(URL);
+        }));
+      }
+
+     
+      
+      // wait for all uploadTasks to be done
+      Promise.all(resolvedPromisesArray).then(() => {
+
+      this.afs.collection('/solicitudes').doc(idS).set({
+        id : idS,
+        userid: user,
+        servicio: "Remodelación",
+        tiposervicio: opcion1 + " " + opcion2 + " " + opcion3+ " " + opcion4,
+        descripcion: form1.description,
+        descripcion2: form2.description2,
+        imagenes: imgURLs[0] + ","+imgURLs[1]+ ","+imgURLs[2],
+        prioridad: form3.selected_option,
+        fecha: fecha,
+        horainicio: form4.from_time,
+        horafin: form4.to_time,
+        estatus: "Pendiente de inspección",
+        username: nombre,
+        direccion: direccion
       })
+      .then(
+        res => resolve(res),
+        err => reject(err)
+      )
+
+      })
+
+      
     })
   }
+
 
   getSolicitudes(){
     return new Promise<any>((resolve,reject) =>{
@@ -228,19 +300,46 @@ export class FirebaseService {
 
   //**************************************************************
 
+  uploadImage(imageURI){
+  return new Promise<any>((resolve, reject) => {
+    let newName = `${new Date().getTime()}.jpeg`;
+    let storageRef = firebase.storage().ref();
+    let imageRef = storageRef.child(`solicitudes/${newName}`);
+    imageRef.putString(imageURI, 'data_url')
+      .then(snapshot => {
+        console.log("Exito en uploadImage");
+        resolve(snapshot.downloadURL)
+      }, err => {
+        console.log("Error uploadImage");
+        reject(err);
+      })
+  })
+}
+
+//--- codigo para encode image a url base64, pero no funciono ---//
+
   encodeImageUri(imageUri, callback) {
+    
     var c = document.createElement('canvas');
     var ctx = c.getContext("2d");
     var img = new Image();
+    console.log("ping en encodeImageUri");
     img.onload = function () {
+      console.log("ping2 en encodeImageUri");
       var aux:any = this;
       c.width = aux.width;
       c.height = aux.height;
       ctx.drawImage(img, 0, 0);
       var dataURL = c.toDataURL("image/jpeg");
+      console.log("ping3 en encodeImageUri");
       callback(dataURL);
-    };
+    }
+    img.onerror = function(){
+        console.log("ping ERROR en encodeImageUri");
+        //reject(imageUri)
+    }
     img.src = imageUri;
+    console.log("ping4 en encodeImageUri"+img.src);
   };
 
   

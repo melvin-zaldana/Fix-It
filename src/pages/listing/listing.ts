@@ -8,6 +8,7 @@ import { ListingModel } from './listing.model';
 import { ListingService } from './listing.service';
 
 import { ConstruccionPage } from '../construccion/construccion';
+import { RemodelacionPage } from '../remodelacion/remodelacion';
 
 
 @Component({
@@ -45,9 +46,11 @@ export class ListingPage {
     console.log("Clicked goToFeed", category);
     console.log("Categoria", category.title);
     let cons:string = "Construcción";
-
+    let remo:string = "Remodelación";
     if(cons === category.title){
       this.nav.push(ConstruccionPage);
+    }if(remo === category.title){
+      this.nav.push(RemodelacionPage);
     }else{
       console.log("NAAAA");
       this.nav.push(FeedPage, { category: category });

@@ -26,6 +26,7 @@ import { HomePage } from '../pages/home/home';
 import { AgendaPage } from '../pages/agenda/agenda';
 import { EstatusPage } from '../pages/estatus/estatus';
 import { ConstruccionPage } from '../pages/construccion/construccion';
+import { RemodelacionPage } from '../pages/remodelacion/remodelacion';
 import { LoginPage } from '../pages/login/login';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { ProfilePage } from '../pages/profile/profile';
@@ -140,6 +141,7 @@ export function createTranslateLoader(http: HttpClient) {
     AgendaPage,
     EstatusPage,
     ConstruccionPage,
+    RemodelacionPage,
     LoginPage,
     NotificationsPage,
     ProfilePage,
@@ -231,6 +233,7 @@ export function createTranslateLoader(http: HttpClient) {
     FormsPage,
     HomePage,
     ConstruccionPage,
+    RemodelacionPage,
     AgendaPage,
     EstatusPage,
     LoginPage,

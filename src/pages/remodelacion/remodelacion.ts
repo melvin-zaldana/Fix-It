@@ -7,8 +7,9 @@ import { NgCalendarModule  } from 'ionic2-calendar';
 import { FirebaseService } from '../firebase-integration/firebase-integration.service';
 import { ListingPage } from '../listing/listing';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+
 /**
- * Generated class for the ConstruccionPage page.
+ * Generated class for the RemodelacionPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -16,10 +17,10 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @IonicPage()
 @Component({
-  selector: 'page-construccion',
-  templateUrl: 'construccion.html',
+  selector: 'page-remodelacion',
+  templateUrl: 'remodelacion.html',
 })
-export class ConstruccionPage {
+export class RemodelacionPage {
 	@ViewChild('formSlider') slides: Slides;
 	viewTitle: string;
 	servicioForm: FormGroup;
@@ -55,6 +56,7 @@ export class ConstruccionPage {
       opcion_2: new FormControl(false),
       opcion_3: new FormControl(false),
       opcion_4: new FormControl(false),
+      opcion_5: new FormControl(false),
       description: new FormControl('',Validators.required)
     });
 
@@ -82,11 +84,11 @@ export class ConstruccionPage {
 
   }
 
-  ionViewDidLoad(){
-  	this.slides.lockSwipeToNext(true);
+  ionViewDidLoad() {
+    this.slides.lockSwipeToNext(true);
   }
 
-//Tomar foto function
+  //Tomar foto function
 	takePhoto(){
 		const options: CameraOptions = {
 		  quality: 100,
@@ -226,7 +228,7 @@ export class ConstruccionPage {
         this.presentAlert();
       }, 7000);
 
-     this.firestoreService.createConstruccion(
+     this.firestoreService.createRemodelacion(
      	this.servicioForm.value, 
      	this.servicioForm2.value, 
      	this.servicioForm3.value,
@@ -258,5 +260,6 @@ export class ConstruccionPage {
             var current = new Date();
             return date < current;
     };
+
 
 }

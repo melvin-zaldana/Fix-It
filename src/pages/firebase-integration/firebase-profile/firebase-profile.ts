@@ -113,7 +113,8 @@ export class FirebaseProfilePage {
     image = normalizeURL(image);
 
     //uploads img to firebase storage
-    this.firebaseService.uploadImage(this.user.id, image)
+    //this.firebaseService.uploadImage(this.user.id, image)
+    this.firebaseService.uploadImage(image)
     .then(photoURL => {
       //updates firebase current user photo
       this.fAuthService.updatePhotoUrl(photoURL);
