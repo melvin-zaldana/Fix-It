@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FirebaseService } from '../firebase-integration/firebase-integration.service';
-
+import { ListingPage } from '../listing/listing';
 /**
  * Generated class for the EstatusPage page.
  *
@@ -22,6 +22,7 @@ export class EstatusPage {
   constructor(
   	public navCtrl: NavController, 
   	public navParams: NavParams,
+    private alertCtrl: AlertController,
   	public firestoreService: FirebaseService
   	) {
   	
@@ -40,7 +41,26 @@ export class EstatusPage {
   	this.firestoreService.cancelEstatus(id)
 	  	.then( solicitudes =>{
 	  		console.log("Cancelado");
+        this.presentAlert();
 	  	})
   }
+
+  //Mensaje de exito function
+  presentAlert() {
+  let alert = this.alertCtrl.create({
+    title: 'Solicitud cancelada',
+    subTitle: 'Tu solicitud fue cancelada con exito',
+    buttons: [
+       {
+        text: 'Ok',
+        handler: () => {
+          //this.navCtrl.push();
+          this.navCtrl.setRoot(ListingPage);
+        }
+      }
+    ]
+  });
+  alert.present();
+}
  
 }

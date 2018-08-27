@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides, LoadingController, AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Slides, LoadingController, AlertController, normalizeURL } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 import { NgCalendarModule  } from 'ionic2-calendar';
@@ -7,8 +7,9 @@ import { NgCalendarModule  } from 'ionic2-calendar';
 import { FirebaseService } from '../firebase-integration/firebase-integration.service';
 import { ListingPage } from '../listing/listing';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+
 /**
- * Generated class for the ConstruccionPage page.
+ * Generated class for the MantenimientoPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -16,10 +17,10 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @IonicPage()
 @Component({
-  selector: 'page-construccion',
-  templateUrl: 'construccion.html',
+  selector: 'page-mantenimiento',
+  templateUrl: 'mantenimiento.html',
 })
-export class ConstruccionPage {
+export class MantenimientoPage {
 	@ViewChild('formSlider') slides: Slides;
 	viewTitle: string;
 	servicioForm: FormGroup;
@@ -55,6 +56,12 @@ export class ConstruccionPage {
       opcion_2: new FormControl(false),
       opcion_3: new FormControl(false),
       opcion_4: new FormControl(false),
+      opcion_5: new FormControl(false),
+      opcion_6: new FormControl(false),
+      opcion_7: new FormControl(false),
+      opcion_8: new FormControl(false),
+      opcion_9: new FormControl(false),
+      opcion_10: new FormControl(false),
       description: new FormControl('',Validators.required)
     });
 
@@ -82,11 +89,11 @@ export class ConstruccionPage {
 
   }
 
-  ionViewDidLoad(){
-  	this.slides.lockSwipeToNext(true);
+  ionViewDidLoad() {
+    this.slides.lockSwipeToNext(true);
   }
 
-//Tomar foto function
+   //Tomar foto function
 	takePhoto(){
 		const options: CameraOptions = {
 		  quality: 100,
@@ -226,7 +233,7 @@ export class ConstruccionPage {
         this.presentAlert();
       }, 7000);
 
-     this.firestoreService.createConstruccion(
+     this.firestoreService.createMantenimiento(
      	this.servicioForm.value, 
      	this.servicioForm2.value, 
      	this.servicioForm3.value,

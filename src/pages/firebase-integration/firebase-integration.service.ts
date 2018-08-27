@@ -359,6 +359,94 @@ export class FirebaseService {
   }
 
 
+  createMantenimiento(form1, form2, form3, form4, fecha, nombre, direccion, imagenes){
+    return new Promise<any>((resolve, reject) => {
+      var opcion1 ="";
+      var opcion2 ="";
+      var opcion3 ="";
+      var opcion4 ="";
+      var opcion5 ="";
+      var opcion6 ="";
+      var opcion7 ="";
+      var opcion8 ="";
+      var opcion9 ="";
+      var opcion10 ="";
+      var imgURLs = [];
+      var resolvedPromisesArray = [];
+      
+      let user = firebase.auth().currentUser.uid;
+      let idS = this.afs.createId();
+      if(form1.opcion_1){
+        opcion1="Servicio de Albañilería";
+      }
+      if(form1.opcion_2){
+        opcion2="Servicio de Carpinteria";
+      }
+      if(form1.opcion_3){
+        opcion3="Servicio de Cerrajería";
+      }
+      if(form1.opcion_4){
+        opcion4="Servicio de Electricidad";
+      }
+      if(form1.opcion_5){
+        opcion5="Servicio de Fontanería";
+      }
+      if(form1.opcion_6){
+        opcion5="Servicio de Pintura";
+      }
+      if(form1.opcion_7){
+        opcion5="Servicio de Jardinería";
+      }
+      if(form1.opcion_8){
+        opcion5="Servicio de Vidriería";
+      }
+      if(form1.opcion_9){
+        opcion5="Servicio de Bombas y Cisternas";
+      }
+      if(form1.opcion_10){
+        opcion5="Otros";
+      }
+
+       for (var i = 0; i < imagenes.length; i++) {
+        resolvedPromisesArray.push( this.uploadImage(imagenes[i])
+        .then(URL =>{
+          imgURLs.push(URL);
+        }));
+      }
+
+     
+      
+      // wait for all uploadTasks to be done
+      Promise.all(resolvedPromisesArray).then(() => {
+
+      this.afs.collection('/solicitudes').doc(idS).set({
+        id : idS,
+        userid: user,
+        servicio: "Mantenimiento",
+        tiposervicio: opcion1 + "," + opcion2 + "," + opcion3+ "," + opcion4+"," + opcion5+"," + opcion6+"," + opcion7+"," + opcion8+"," + opcion9+"," + opcion10,
+        descripcion: form1.description,
+        descripcion2: form2.description2,
+        imagenes: imgURLs[0] + ","+imgURLs[1]+ ","+imgURLs[2]+ ","+imgURLs[3],
+        prioridad: form3.selected_option,
+        fecha: fecha,
+        horainicio: form4.from_time,
+        horafin: form4.to_time,
+        estatus: "Pendiente de inspección",
+        username: nombre,
+        direccion: direccion
+      })
+      .then(
+        res => resolve(res),
+        err => reject(err)
+      )
+
+      })
+
+      
+    })
+  }
+
+
   getSolicitudes(){
     return new Promise<any>((resolve,reject) =>{
       let user = firebase.auth().currentUser.uid;

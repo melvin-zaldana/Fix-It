@@ -63,7 +63,7 @@ export class SettingsPage {
   ) {
     this.loading = this.loadingCtrl.create();
 
-    this.languages = this.languageService.getLanguages();
+    
 
     this.settingsForm = new FormGroup({
       name: new FormControl(),
@@ -108,9 +108,9 @@ export class SettingsPage {
 
       this.loading.dismiss();
 
-      this.settingsForm.get('language').valueChanges.subscribe((lang) => {
+     /* this.settingsForm.get('language').valueChanges.subscribe((lang) => {
         this.setLanguage(lang);
-      });
+      });*/
     });
 
     this.getData2();
@@ -131,31 +131,6 @@ export class SettingsPage {
   showPrivacyModal() {
     let modal = this.modal.create(PrivacyPolicyPage);
     modal.present();
-  }
-
-  setLanguage(lang: LanguageModel){
-    let language_to_set = this.translate.getDefaultLang();
-
-    if(lang){
-      language_to_set = lang.code;
-    }
-    this.translate.setDefaultLang(language_to_set);
-    this.translate.use(language_to_set);
-  }
-
-  rateApp(){
-    if(this.platform.is('cordova')){
-      this.appRate.preferences.storeAppURL = {
-        ios: '<my_app_id>',
-        android: 'market://details?id=<package_name>',
-        windows: 'ms-windows-store://review/?ProductId=<Store_ID>'
-      };
-
-      this.appRate.promptForRating(true);
-    }
-    else{
-      console.log("You are not in a cordova environment. You should test this feature in a real device or an emulator");
-    }
   }
 
   openImagePicker(){
@@ -219,14 +194,15 @@ export class SettingsPage {
     this.loading = this.loadingCtrl.create({
       content: 'Guardando...'
     });
-    this.firestoreService.updateUser(value)
-    .then(res => {
-      console.log("Se actualizo todo");
-      this.loading.present();
+
+    this.loading.present();
       setTimeout(() => {
         this.loading.dismiss();
       }, 3000);
 
+    this.firestoreService.updateUser(value)
+    .then(res => {
+      console.log("Se actualizo todo");
       }, err => {
         console.log("Fallo la actualización")
       })

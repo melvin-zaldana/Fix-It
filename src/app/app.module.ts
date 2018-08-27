@@ -28,6 +28,7 @@ import { EstatusPage } from '../pages/estatus/estatus';
 import { ConstruccionPage } from '../pages/construccion/construccion';
 import { RemodelacionPage } from '../pages/remodelacion/remodelacion';
 import { ReparacionPage } from '../pages/reparacion/reparacion';
+import { MantenimientoPage } from '../pages/mantenimiento/mantenimiento';
 import { LoginPage } from '../pages/login/login';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { ProfilePage } from '../pages/profile/profile';
@@ -144,6 +145,7 @@ export function createTranslateLoader(http: HttpClient) {
     ConstruccionPage,
     RemodelacionPage,
     ReparacionPage,
+    MantenimientoPage,
     LoginPage,
     NotificationsPage,
     ProfilePage,
@@ -237,6 +239,7 @@ export function createTranslateLoader(http: HttpClient) {
     ConstruccionPage,
     RemodelacionPage,
     ReparacionPage,
+    MantenimientoPage,
     AgendaPage,
     EstatusPage,
     LoginPage,

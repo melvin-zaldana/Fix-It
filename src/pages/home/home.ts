@@ -7,6 +7,7 @@ import { FacebookLoginService } from '../facebook-login/facebook-login.service';
 
 import { LoginPage } from '../login/login';
 import { SignupPage } from '../signup/signup';
+import { ListingPage } from '../listing/listing';
 
 /**
  * Generated class for the HomePage page.
@@ -30,7 +31,7 @@ export class HomePage {
     public facebookLoginService: FacebookLoginService,
     public loadingCtrl: LoadingController
     ) {
-  	this.main_page = { component: TabsNavigationPage };
+  	this.main_page = { component: ListingPage };
   }
 
     doSignup(){
@@ -54,11 +55,13 @@ export class HomePage {
     this.facebookLoginService.getFacebookUser()
     .then(function(data) {
        // user is previously logged with FB and we have his data we will let him access the app
+       console.log("Exito Login FB");
       env.navCtrl.setRoot(env.main_page.component);
     }, function(error){
       //we don't have the user data so we will ask him to log in
-      env.facebookLoginService.doFacebookLogin()
+      env.facebookLoginService.doFacebookLoginFirebase()
       .then(function(res){
+        console.log("Exito signup FB");
         env.loading.dismiss();
         env.navCtrl.setRoot(env.main_page.component);
       }, function(err){
