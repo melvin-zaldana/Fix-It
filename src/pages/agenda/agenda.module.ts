@@ -4,7 +4,7 @@ import { AgendaPage } from './agenda';
 
 @NgModule({
   declarations: [
-    AgendaPage,
+    AgendaPage
   ],
   imports: [
     IonicPageModule.forChild(AgendaPage),
