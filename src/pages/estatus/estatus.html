@@ -15,42 +15,42 @@
 
 <ion-content padding>
 	<ion-row *ngFor="let sol of listaS">
-		<ion-col col-12>
-			<ion-list>
-			  <ion-list-header>
-			    Servicio solicitado:
-			  </ion-list-header>
-			  <ion-item>{{sol.tiposervicio}}</ion-item>
-			  <ion-list-header>
-			    Estatus:
-			  </ion-list-header>
-			  <ion-item>{{sol.estatus}}</ion-item>
-			  <ion-list-header>
-			    Visita programada:
-			  </ion-list-header>
-			  <ion-item>{{sol.fecha}}</ion-item>
-			</ion-list>
-		</ion-col>
-		
-		<ion-col col-12>
-			<ion-list>
-			  <ion-list-header>
-			    Dirección:
-			  </ion-list-header>
-			  <ion-item>{{sol.direccion}}</ion-item>
-			  <ion-list-header>
-			    Cliente:
-			  </ion-list-header>
-			  <ion-item>{{sol.username}}</ion-item>
-			</ion-list>
+		<div *ngIf="!(sol.estatus === 'Cancelado' || sol.estatus === 'Realizado'); then thenBlock else elseBlock"></div>
+			<ng-template #thenBlock>
+				<ion-col col-12>
+					<ion-list>
+					  <ion-list-header>
+					    Servicio solicitado:
+					  </ion-list-header>
+					  <ion-item>{{sol.tiposervicio}}</ion-item>
+					  <ion-list-header>
+					    Estatus:
+					  </ion-list-header>
+					  <ion-item>{{sol.estatus}}</ion-item>
+					  <ion-list-header>
+					    Visita programada:
+					  </ion-list-header>
+					  <ion-item>{{sol.fecha | date : "dd/MM/y"}}</ion-item>
+					</ion-list>
+				</ion-col>
+				
+				<ion-col col-12>
+					<ion-list>
+					  <ion-list-header>
+					    Dirección:
+					  </ion-list-header>
+					  <ion-item>{{sol.direccion}}</ion-item>
+					  <ion-list-header>
+					    Cliente:
+					  </ion-list-header>
+					  <ion-item>{{sol.username}}</ion-item>
+					</ion-list>
 
-			<div *ngIf="sol.estatus == 'Cancelado'; then thenBlock else elseBlock"></div>
-				<ng-template #thenBlock><button ion-button color="danger" block (click)="Cancel(sol.id)"  [disabled]=true >Solicitud cancelada</button></ng-template>
-				<ng-template #elseBlock><button ion-button color="danger" block (click)="Cancel(sol.id)" >Cancelar solicitud</button></ng-template> 
-			
-		</ion-col>
-		<ion-col col-12 class="separador">
-			
-		</ion-col>
+					<button ion-button color="danger" block (click)="Cancel(sol.id)" >Cancelar solicitud</button>
+					
+				</ion-col>
+				<ion-col col-12 class="separador">
+				</ion-col>
+		</ng-template>
 	</ion-row>
 </ion-content>

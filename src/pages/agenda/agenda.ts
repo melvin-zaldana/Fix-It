@@ -67,6 +67,8 @@ export class AgendaPage {
         console.log(this.eventSource);
         for (let sol of data) {
 
+          if(!(sol.estatus === 'Cancelado' || sol.estatus === 'Realizado')){
+
           hi = sol.horainicio.split(":");
           hf = sol.horafin.split(":");
 
@@ -88,6 +90,7 @@ export class AgendaPage {
         });
          
         }
+      }
       
 
       console.log(this.eventSource);

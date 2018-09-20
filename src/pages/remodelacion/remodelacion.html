@@ -16,60 +16,61 @@
 <ion-content class="remodelacion-content" padding>
 <ion-slides #formSlider >
   	<ion-slide>
-	<ion-row>
-		<ion-col col-4></ion-col>
-		<ion-col col-4>
-			<ion-img class="icono" width="100" height="100" src="././assets/images/fix_it/servicios/remodelacion-icono.png"></ion-img>
-		</ion-col>
-		<ion-col col-4></ion-col>
-	</ion-row>
-	<ion-row>
-		<ion-col col-3></ion-col>
-		<ion-col text-center col-6>
-			<h2 class="heading1">Servicio de</h2>
-      		<h1 class="heading2">Remodelación</h1>
-		</ion-col>
-		<ion-col col-3></ion-col>
-	</ion-row>
-	<ion-row>
-		<ion-col col-2>
-			<ion-img class="icono" width="37" height="37" src="././assets/images/fix_it/servicios/icono-servicios.png"></ion-img>
-		</ion-col>	
-		<ion-col col-10>
-			<h4 class="heading3" text-left>Servicios disponibles</h4>	
-		</ion-col>
-	</ion-row>
+      <ion-scroll scrollY="true" class="scroll">
+    	<ion-row>
+    		<ion-col col-4></ion-col>
+    		<ion-col col-4>
+    			<ion-img class="icono" width="100" height="100" src="././assets/images/fix_it/servicios/remodelacion-icono.png"></ion-img>
+    		</ion-col>
+    		<ion-col col-4></ion-col>
+    	</ion-row>
+    	<ion-row>
+    		<ion-col col-3></ion-col>
+    		<ion-col text-center col-12>
+    			<h2 class="heading1">Servicio de</h2>
+          		<h1 class="heading2">Remodelación</h1>
+    		</ion-col>
+    		<ion-col col-3></ion-col>
+    	</ion-row>
+    	<ion-row>
+    		<ion-col col-2>
+    			<ion-img class="icono" width="37" height="37" src="././assets/images/fix_it/servicios/icono-servicios.png"></ion-img>
+    		</ion-col>	
+    		<ion-col col-10>
+    			<h4 class="heading3" text-left>Servicios disponibles</h4>	
+    		</ion-col>
+    	</ion-row>
 
-	<form [formGroup]="servicioForm">
-		<ion-list class="checkbox-list">
-        <ion-item class="checkbox-item">
-          <ion-label>Remodelación de Fachada</ion-label>
-          <ion-checkbox formControlName="opcion_1"></ion-checkbox>
-        </ion-item>
-        <ion-item class="checkbox-item">
-          <ion-label>Remodelación de Cochera</ion-label>
-          <ion-checkbox formControlName="opcion_2"></ion-checkbox>
-        </ion-item>
-        <ion-item class="checkbox-item">
-          <ion-label>Remodelación de Cocina</ion-label>
-          <ion-checkbox formControlName="opcion_3"></ion-checkbox>
-        </ion-item>
-        <ion-item class="checkbox-item">
-          <ion-label>Remodelación de Dormitorio</ion-label>
-          <ion-checkbox formControlName="opcion_4"></ion-checkbox>
-        </ion-item>
-        <ion-item class="checkbox-item">
-          <ion-label>Otros</ion-label>
-          <ion-checkbox formControlName="opcion_5"></ion-checkbox>
-        </ion-item>
-      </ion-list>
+    	<form [formGroup]="servicioForm">
+    		<ion-list class="checkbox-list">
+            <ion-item class="checkbox-item">
+              <ion-label>Remodelación de Fachada</ion-label>
+              <ion-checkbox formControlName="opcion_1"></ion-checkbox>
+            </ion-item>
+            <ion-item class="checkbox-item">
+              <ion-label>Remodelación de Cochera</ion-label>
+              <ion-checkbox formControlName="opcion_2"></ion-checkbox>
+            </ion-item>
+            <ion-item class="checkbox-item">
+              <ion-label>Remodelación de Cocina</ion-label>
+              <ion-checkbox formControlName="opcion_3"></ion-checkbox>
+            </ion-item>
+            <ion-item class="checkbox-item">
+              <ion-label>Remodelación de Dormitorio</ion-label>
+              <ion-checkbox formControlName="opcion_4"></ion-checkbox>
+            </ion-item>
+            <ion-item class="checkbox-item">
+              <ion-label>Otros</ion-label>
+              <ion-checkbox formControlName="opcion_5"></ion-checkbox>
+            </ion-item>
+          </ion-list>
 
-		<ion-item>
-          <ion-textarea rows="4" class="descripcion" placeholder="Describe de forma detallada..." formControlName="description"></ion-textarea>
-        </ion-item>
-        <button ion-button block class="signup-button" (click)="next()" [disabled]="!servicioForm.valid" >Siguiente</button>
-  </form> 
-
+    		<ion-item>
+              <ion-textarea rows="4" class="descripcion" placeholder="Describe de forma detallada..." formControlName="description"></ion-textarea>
+            </ion-item>
+            <button ion-button block class="signup-button" (click)="next()" [disabled]="!servicioForm.valid" >Siguiente</button>
+      </form> 
+      </ion-scroll>
   </ion-slide>
 
   <ion-slide>
@@ -83,7 +84,7 @@
   </ion-row>
   <ion-row>
     <ion-col col-3></ion-col>
-    <ion-col text-center col-6>
+    <ion-col text-center col-12>
       <h2 class="heading1">Servicio de</h2>
           <h1 class="heading2">Remodelación</h1>
     </ion-col>
@@ -162,7 +163,7 @@
 	</ion-row>
 	<ion-row>
 		<ion-col col-3></ion-col>
-		<ion-col text-center col-6>
+		<ion-col text-center col-12>
 			<h2 class="heading1">Nivel de</h2>
       		<h1 class="heading2">Prioridad</h1>
 		</ion-col>
