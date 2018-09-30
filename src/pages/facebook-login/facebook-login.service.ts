@@ -153,9 +153,9 @@ doFacebookLoginFirebase3(){
             this.afs.collection('/usuarios').doc(uid).set({
             id: uid,
             nombre: user.name,
-            telefono: "Ingresa tu teléfono aquí",
+            telefono: "",
             correo: user.email,
-            direccion: "Ingresa tu dirección",
+            direccion: "",
             photoURL: "https://graph.facebook.com/" + user.id + "/picture?type=large"
           })
           .then(
