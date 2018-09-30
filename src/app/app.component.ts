@@ -5,13 +5,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Observable } from 'rxjs/Observable';
 
 import { TabsNavigationPage } from '../pages/tabs-navigation/tabs-navigation';
-import { FormsPage } from '../pages/forms/forms';
-import { LayoutsPage } from '../pages/layouts/layouts';
+
 import { WalkthroughPage } from '../pages/walkthrough/walkthrough';
 import { SettingsPage } from '../pages/settings/settings';
-import { FunctionalitiesPage } from '../pages/functionalities/functionalities';
 import { FirebaseLoginPage } from '../pages/firebase-integration/firebase-login/firebase-login';
-import { WordpressMenuPage } from '../pages/wordpress-integration/wordpress-menu/wordpress-menu';
 import { AgendaPage } from '../pages/agenda/agenda';
 import { EstatusPage } from '../pages/estatus/estatus';
 import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
@@ -91,7 +88,6 @@ export class MyApp {
           this.translate.get('FIREBASE_INTEGRATION'),*/
           this.translate.get('Estatus de servicio'),
           this.translate.get('Agenda'),
-          this.translate.get('Ayuda'),
           this.translate.get('TERMS_OF_USE')
         ).subscribe(data => {
           /*this.pages = [
@@ -114,8 +110,7 @@ export class MyApp {
           
             { title: data[0], icon: '', component: EstatusPage },
             { title: data[1], icon: '', component: AgendaPage },
-            { title: data[2], icon: '', component: FirebaseLoginPage },
-            { title: data[3], icon: '', component: TermsOfServicePage }
+            { title: data[2], icon: '', component: TermsOfServicePage }
           ];
         });
       });

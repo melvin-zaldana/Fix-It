@@ -7,9 +7,7 @@
       <h1 id="nombre_usuario">{{nombre}}</h1>
     </ion-item>
     <ion-item class="menu-card-2">
-      <a (click)="goToSettings()"><h2>Editar perfil</h2></a>
-      <h2>Configuración</h2>
-  
+      <a (click)="goToSettings()"><h2>Editar perfil</h2></a>  
     </ion-item>
     <ion-list class="menu-list">
       <button ion-item detail-none *ngFor="let page of pages" (click)="openPage(page)">

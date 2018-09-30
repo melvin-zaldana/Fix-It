@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 
-import { FeedPage } from '../feed/feed';
 import 'rxjs/Rx';
 
 import { ListingModel } from './listing.model';

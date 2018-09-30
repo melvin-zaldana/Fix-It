@@ -43,11 +43,11 @@ export class FacebookLoginPage {
   }
 
   doFacebookLogin() {
-    this.facebookLoginService.doFacebookLogin()
+    this.facebookLoginService.doFacebookLoginFirebase()
     .then((user) => {
       this.user = user;
     }, (err) => {
-      console.log("Facebook Login error", err);
+      console.log("Facebook Login error xyz", err);
     });
   }
 }

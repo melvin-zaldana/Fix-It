@@ -73,10 +73,11 @@ export class FirebaseService {
     })
   }
 
+
     updateUser(value){
     return new Promise<any>((resolve, reject) => {
       let user = firebase.auth().currentUser.uid;
-      this.afs.collection('/usuarios').doc(user).set({
+      this.afs.collection('/usuarios').doc(user).update({
         correo: value.email,
         direccion: value.address,
         nombre: value.name,
