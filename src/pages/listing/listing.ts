@@ -11,6 +11,8 @@ import { RemodelacionPage } from '../remodelacion/remodelacion';
 import { ReparacionPage } from '../reparacion/reparacion';
 import { MantenimientoPage } from '../mantenimiento/mantenimiento';
 
+//Push notification - active app
+import { FcmProvider } from '../../providers/fcm/fcm';
 
 @Component({
   selector: 'listing-page',
@@ -23,9 +25,12 @@ export class ListingPage {
   constructor(
     public nav: NavController,
     public listingService: ListingService,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    fcm: FcmProvider
   ) {
     this.loading = this.loadingCtrl.create();
+    // Push notification - Get a FCM token
+      fcm.getToken();
   }
 
 
@@ -40,7 +45,11 @@ export class ListingPage {
         this.listing.categories = data.categories;
         this.loading.dismiss();
       });
+      
   }
+
+
+
 
 
   goToFeed(category: any) {

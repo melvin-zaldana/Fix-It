@@ -11,7 +11,7 @@ export const environment = {
     messagingSenderId: "1058421760301"
   },
   google_web_client_id: "1092390853283-i98feg7fb1dlsm92kkcbim62855pepi8.apps.googleusercontent.com",
-  facebook_app_id: 826720427470540,
+  facebook_app_id: 1009034272586229,
   wordpress_url: 'http://wordpress.startapplabs.com/blog/',
   wordpress_rest_api_url: 'http://wordpress.startapplabs.com/blog/wp-json/wp/v2/'
 };

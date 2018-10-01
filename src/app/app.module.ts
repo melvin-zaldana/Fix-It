@@ -8,7 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../environment/environment';
-
+import { Firebase } from '@ionic-native/firebase';
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { LOCALE_ID } from '@angular/core';
 
@@ -237,6 +237,7 @@ export function createTranslateLoader(http: HttpClient) {
 		ImagePicker,
 		Crop,
 		EmailComposer,
+    Firebase,
     FcmProvider
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

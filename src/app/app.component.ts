@@ -17,6 +17,13 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 import { Events } from 'ionic-angular';
 
+//Push notification - active app
+import { FcmProvider } from '../providers/fcm/fcm';
+import { Subject } from 'rxjs/Subject';
+import { tap } from 'rxjs/operators';
+
+import { Firebase } from '@ionic-native/firebase';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.html'
@@ -44,7 +51,9 @@ export class MyApp {
     public statusBar: StatusBar,
     public translate: TranslateService,
     public toastCtrl: ToastController,
-    public events: Events
+    public events: Events,
+    public firebase: Firebase,
+    fcm: FcmProvider
   ) {
 
     //----escucha el evento en login y signup para mostrar nombre y foto
@@ -63,8 +72,25 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.splashScreen.hide();
       this.statusBar.styleDefault();
-     
+      
+      // Push notification - Get a FCM token
+      //fcm.getToken();
+
+       // Listen to incoming messages
+        fcm.listenToNotifications().pipe(
+          tap(msg => {
+            // show a toast
+            const toast = toastCtrl.create({
+              message: msg.body,
+              duration: 3000
+            });
+            toast.present();
+          })
+        ).subscribe()
+
     });
+
+    
 
     
 
@@ -79,33 +105,10 @@ export class MyApp {
           platform.setDir('ltr', true);
         }
         Observable.forkJoin(
-          /*this.translate.get('HOME'),
-          this.translate.get('FORMS'),
-          this.translate.get('FUNCTIONALITIES'),
-          this.translate.get('LAYOUTS'),
-          this.translate.get('SETTINGS'),
-          this.translate.get('WORDPRESS_INTEGRATION'),
-          this.translate.get('FIREBASE_INTEGRATION'),*/
           this.translate.get('Estatus de servicio'),
           this.translate.get('Agenda'),
           this.translate.get('TERMS_OF_USE')
         ).subscribe(data => {
-          /*this.pages = [
-            { title: data[0], icon: 'home', component: TabsNavigationPage },
-            { title: data[1], icon: 'create', component: FormsPage },
-            { title: data[2], icon: 'code', component: FunctionalitiesPage }
-          ];
-
-          this.pushPages = [
-            { title: data[3], icon: 'grid', component: LayoutsPage },
-            { title: data[4], icon: 'settings', component: SettingsPage },
-            { title: data[5], icon: 'logo-wordpress', component: WordpressMenuPage },
-            { title: data[6], icon: 'flame', component: FirebaseLoginPage },
-            { title: data[7], icon: '', component: EstatusPage },
-            { title: data[8], icon: '', component: AgendaPage },
-            { title: data[9], icon: '', component: FirebaseLoginPage },
-            { title: data[10], icon: '', component: TermsOfServicePage }
-          ];*/
           this.pushPages = [
           
             { title: data[0], icon: '', component: EstatusPage },
@@ -139,9 +142,10 @@ export class MyApp {
     this.app.getRootNav().push(SettingsPage);
   }
 
-  setName(name){
-    this.nombre="Guillermo";
-    console.log("se cambio nombre" +name);
+  Token(){
+    this.firebase.getToken()
+    .then(token => console.log(`The token is ${token}`)) // save the token server-side and use it to push notifications to this device
+    .catch(error => console.error('Error getting token', error));
   }
 
 

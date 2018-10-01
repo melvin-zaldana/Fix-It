@@ -5,6 +5,7 @@ import { Platform } from 'ionic-angular';
 import { AngularFirestore } from 'angularfire2/firestore';
 
 import { Firebase } from '@ionic-native/firebase';
+import * as firebase from 'firebase/app';
 
 /*
   Generated class for the FcmProvider provider.
@@ -17,9 +18,10 @@ export class FcmProvider {
 
   constructor(
   	public http: HttpClient,
-    public afs: AngularFirestore,
-    private platform: Platform,
-    public firebaseNative: Firebase) {
+    public firebaseNative: Firebase,
+     public afs: AngularFirestore,
+    private platform: Platform
+    ) {
 
     console.log('Hello FcmProvider Provider');
 
@@ -31,7 +33,8 @@ export class FcmProvider {
   	let token;
 
   if (this.platform.is('android')) {
-    token = await this.firebaseNative.getToken()
+    token = await this.firebaseNative.getToken();
+    console.log("obtuvimos el token",token);
   } 
 
   if (this.platform.is('ios')) {
@@ -45,17 +48,21 @@ export class FcmProvider {
 
   // Save the token to firestore
   private saveTokenToFirestore(token) {
+    console.log("intentaremos guardar  el token",token);
+  	if (!token){
+      console.log("Null: el token es",token);
+      return;
+    } 
 
-  	if (!token) return;
-
-  const devicesRef = this.afs.collection('devices')
+  //Get id of current user
+  let user = firebase.auth().currentUser.uid;
+  const devicesRef = this.afs.collection('/usuarios')
 
   const docData = { 
-    token,
-    userId: 'testUser',
+    token
   }
-
-  return devicesRef.doc(token).set(docData)
+  console.log("obtuvimos el token y lo guardamos");
+  return devicesRef.doc(user).update(docData)
 
   }
 

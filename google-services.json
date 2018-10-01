@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1058421760301",
+    "firebase_url": "https://fix-it-d154a.firebaseio.com",
+    "project_id": "fix-it-d154a",
+    "storage_bucket": "fix-it-d154a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058421760301:android:ca71df0991778caf",
+        "android_client_info": {
+          "package_name": "com.fixit.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058421760301-k7fbldbh7hsbqt0o7k3iiv6lreqti0kl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq95QlkueWPK8nfb9PEBVMnowtWiUhxQs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
