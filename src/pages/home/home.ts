@@ -81,7 +81,7 @@ export class HomePage {
       env.navCtrl.setRoot(env.main_page.component);
     }, function(error){
       //we don't have the user data so we will ask him to log in
-      env.facebookLoginService.doFacebookLoginFirebase2()
+      env.facebookLoginService.doFacebookLoginFirebase()
       .then(function(res){
         console.log("Exito signup FB");
         env.loadData();

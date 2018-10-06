@@ -162,6 +162,14 @@ doFacebookLoginFirebase3(){
             res => resolve(res),
             err => reject(err)
           )
+
+          this.nativeStorage.setItem('facebook_user',
+              {
+                userId: user.id,
+                name: user.name,
+                gender: user.gender,
+                image: "https://graph.facebook.com/" + user.id + "/picture?type=large"            
+              })
            
         })
 }
