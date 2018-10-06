@@ -32,6 +32,7 @@ res/
 www/
 pwa/
 $RECYCLE.BIN/
+google-services.json
 
 .DS_Store
 Thumbs.db
