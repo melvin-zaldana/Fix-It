@@ -41,29 +41,25 @@
 	</ion-row>
 
 	<form [formGroup]="servicioForm">
-		<ion-list class="checkbox-list">
+		<ion-list  class="radio-group" radio-group formControlName="selected_servicio">
         <ion-item class="checkbox-item">
           <ion-label>Construcción de Cochera</ion-label>
-          <ion-checkbox formControlName="opcion_1"></ion-checkbox>
+   		 <ion-radio  value="Construcción de Cochera"></ion-radio>
         </ion-item>
         <ion-item class="checkbox-item">
           <ion-label>Construcción de Terraza</ion-label>
-          <ion-checkbox formControlName="opcion_2"></ion-checkbox>
+   		 <ion-radio  value="Construcción de Terraza"></ion-radio>
         </ion-item>
         <ion-item class="checkbox-item">
           <ion-label>Construcción de Cisterna</ion-label>
-          <ion-checkbox formControlName="opcion_3"></ion-checkbox>
+          <ion-radio  value="Construcción de Cisterna"></ion-radio>
         </ion-item>
         <ion-item class="checkbox-item">
           <ion-label>Otros</ion-label>
-          <ion-checkbox formControlName="opcion_4"></ion-checkbox>
+          <ion-radio  value="Otros"></ion-radio>
         </ion-item>
       </ion-list>
-
-		<ion-item>
-          <ion-textarea rows="4" class="descripcion" placeholder="Describe de forma detallada..." formControlName="description"></ion-textarea>
-        </ion-item>
-        <button ion-button block class="signup-button" (click)="next()" [disabled]="!servicioForm.valid" >Siguiente</button>
+        <button ion-button block class="signup-button" (click)="next()" >Siguiente</button>
   </form> 
 
   </ion-slide>

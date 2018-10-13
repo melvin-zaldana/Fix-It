@@ -5,7 +5,6 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { TermsOfServicePage } from '../terms-of-service/terms-of-service';
 import { PrivacyPolicyPage } from '../privacy-policy/privacy-policy';
 
-import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 import { ListingPage } from '../listing/listing';
 
 import { FirebaseAuthService } from '../firebase-integration/firebase-auth.service';

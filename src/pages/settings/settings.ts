@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, LoadingController, Platform, normalizeURL } from 'ionic-angular';
+import { NavController, ModalController, LoadingController, Platform, normalizeURL} from 'ionic-angular';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { TermsOfServicePage } from '../terms-of-service/terms-of-service';
@@ -22,6 +22,7 @@ import { Crop } from '@ionic-native/crop';
 import * as firebase from 'firebase/app';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { FirebaseService } from '../firebase-integration/firebase-integration.service';
+import { FirebaseAuthService } from '../firebase-integration/firebase-auth.service';
 
 
 
@@ -58,7 +59,8 @@ export class SettingsPage {
     public cropService: Crop,
     public platform: Platform,
     public firestoreService: FirebaseService,
-    public afs: AngularFirestore
+    public afs: AngularFirestore,
+    public fAuthService: FirebaseAuthService
 
   ) {
     this.loading = this.loadingCtrl.create();
@@ -91,7 +93,7 @@ export class SettingsPage {
       // patchValue: With patchValue, you can assign values to specific controls in a FormGroup by supplying an object of key/value pairs for just the controls of interest.
       // More info: https://angular.io/docs/ts/latest/guide/reactive-forms.html#!#populate-the-form-model-with-_setvalue_-and-_patchvalue_
       this.loadData();
-      let currentLang = this.translate.currentLang;
+     
 
      /* this.settingsForm.patchValue({
         name: data.user.name,
@@ -119,6 +121,7 @@ export class SettingsPage {
   }
 
   logout() {
+    this.fAuthService.doLogout();
     // navigate to the new page if it is not the current page
     this.nav.setRoot(this.rootPage);
   }

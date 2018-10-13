@@ -1,9 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides, LoadingController, AlertController, normalizeURL } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Slides, LoadingController, AlertController} from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
-
-import { NgCalendarModule  } from 'ionic2-calendar';
-
 import { FirebaseService } from '../firebase-integration/firebase-integration.service';
 import { ListingPage } from '../listing/listing';
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -52,12 +49,7 @@ export class RemodelacionPage {
   	) 
   {
   	this.servicioForm = new FormGroup({
-  	  opcion_1: new FormControl(true),
-      opcion_2: new FormControl(false),
-      opcion_3: new FormControl(false),
-      opcion_4: new FormControl(false),
-      opcion_5: new FormControl(false),
-      description: new FormControl('',Validators.required)
+      selected_servicio: new FormControl('Remodelación de Fachada')
     });
 
     this.servicioForm2 = new FormGroup({
@@ -192,13 +184,13 @@ export class RemodelacionPage {
 
 
 
-  //Mensaje de exito function
-  presentAlert() {
+//Mensaje de exito function
+  presentAlert(texto) {
   let alert = this.alertCtrl.create({
     title: 'Solicitud confirmada',
-    subTitle: 'Nos pondremos en contacto contigo en menos de 24 horas',
+    subTitle: texto,
     buttons: [
-    	 {
+       {
         text: 'Ok',
         handler: () => {
           //this.navCtrl.push();
@@ -225,7 +217,13 @@ export class RemodelacionPage {
         this.loading.dismiss();
       }, 7000);
     setTimeout(() => {
-        this.presentAlert();
+         if(this.servicioForm3.value.selected_option == "PRIORIDAD BAJA"){
+          this.presentAlert('Nos pondremos en contacto contigo en menos de 24 horas');
+        } else if(this.servicioForm3.value.selected_option == "PRIORIDAD MEDIA"){
+          this.presentAlert('Nos pondremos en contacto contigo en menos de 12 horas');
+        } else if(this.servicioForm3.value.selected_option == "PRIORIDAD ALTA"){
+          this.presentAlert('Nos pondremos en contacto contigo de inmediato');
+        }
       }, 7000);
 
      this.firestoreService.createRemodelacion(

@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-
-import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
-
 import { FacebookLoginService } from '../facebook-login/facebook-login.service';
 import { FirebaseService } from '../firebase-integration/firebase-integration.service';
 
