@@ -74,14 +74,15 @@ export class FirebaseService {
   }
 
 
-    updateUser(value){
+    updateUser(value,imgurl){
     return new Promise<any>((resolve, reject) => {
       let user = firebase.auth().currentUser.uid;
       this.afs.collection('/usuarios').doc(user).update({
         correo: value.email,
         direccion: value.address,
         nombre: value.name,
-        telefono: value.phone
+        telefono: value.phone,
+        photoURL: imgurl
       })
       .then(
         res => resolve(res),
@@ -379,7 +380,25 @@ export class FirebaseService {
   })
 }
 
-//--- codigo para encode image a url base64, pero no funciono ---//
+
+
+uploadAvatar(imageURI){
+  return new Promise<any>((resolve, reject) => {
+    let newName = `${new Date().getTime()}.jpeg`;
+    let storageRef = firebase.storage().ref();
+    let imageRef = storageRef.child('profile_pictures').child(newName);
+    this.encodeImageUri(imageURI, function(image64){
+      imageRef.putString(image64, 'data_url')
+      .then(snapshot => {
+        resolve(snapshot.downloadURL)
+      }, err => {
+        reject(err);
+      })
+    })
+  })
+}
+
+//--- codigo para encode image a url base64, funciona seleccionando archivos---//
 
   encodeImageUri(imageUri, callback) {
     
