@@ -33,7 +33,7 @@ import { WalkthroughPage } from '../pages/walkthrough/walkthrough';
 import { SettingsPage } from '../pages/settings/settings';
 import { SignupPage } from '../pages/signup/signup';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
-
+import { FollowersPage } from '../pages/followers/followers';
 
 import { FormLayoutPage } from '../pages/form-layout/form-layout';
 
@@ -122,6 +122,7 @@ export function createTranslateLoader(http: HttpClient) {
     WalkthroughPage,
     SettingsPage,
     SignupPage,
+    FollowersPage,
     ForgotPasswordPage,
     FormLayoutPage,
     TermsOfServicePage,
@@ -186,6 +187,7 @@ export function createTranslateLoader(http: HttpClient) {
     ReparacionPage,
     MantenimientoPage,
     EstatusPage,
+    FollowersPage,
     LoginPage,
     NotificationsPage,
     ProfilePage,
