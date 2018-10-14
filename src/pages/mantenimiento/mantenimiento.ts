@@ -205,28 +205,13 @@ export class MantenimientoPage {
 
 //Guardar solicitud function
   save(){
- 	
- 	this.firestoreService.getDatos()
- 	.then(valores =>{
-
- 		this.loading = this.loadingCtrl.create({
+ 	this.loading = this.loadingCtrl.create({
       content: 'Tu solicitud esta siendo agendada...'
     });
     this.loading.present();
-    
-    setTimeout(() => {
-        this.loading.dismiss();
-      }, 7000);
-    setTimeout(() => {
-         if(this.servicioForm3.value.selected_option == "PRIORIDAD BAJA"){
-          this.presentAlert('Nos pondremos en contacto contigo en menos de 24 horas');
-        } else if(this.servicioForm3.value.selected_option == "PRIORIDAD MEDIA"){
-          this.presentAlert('Nos pondremos en contacto contigo en menos de 12 horas');
-        } else if(this.servicioForm3.value.selected_option == "PRIORIDAD ALTA"){
-          this.presentAlert('Nos pondremos en contacto contigo de inmediato');
-        }
-      }, 7000);
 
+ 	this.firestoreService.getDatos()
+ 	.then(valores =>{    
      this.firestoreService.createMantenimiento(
      	this.servicioForm.value, 
      	this.servicioForm2.value, 
@@ -238,7 +223,14 @@ export class MantenimientoPage {
       this.pictures
      	)
     .then(data => {
-
+      this.loading.dismiss();
+      if(this.servicioForm3.value.selected_option == "PRIORIDAD BAJA"){
+          this.presentAlert('Nos pondremos en contacto contigo en menos de 24 horas');
+        } else if(this.servicioForm3.value.selected_option == "PRIORIDAD MEDIA"){
+          this.presentAlert('Nos pondremos en contacto contigo en menos de 12 horas');
+        } else if(this.servicioForm3.value.selected_option == "PRIORIDAD ALTA"){
+          this.presentAlert('Nos pondremos en contacto contigo de inmediato');
+        }
     })
  	})   
 }

@@ -23,7 +23,7 @@ import * as firebase from 'firebase/app';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { FirebaseService } from '../firebase-integration/firebase-integration.service';
 import { FirebaseAuthService } from '../firebase-integration/firebase-auth.service';
-
+import { Events } from 'ionic-angular';
 
 
 @Component({
@@ -45,6 +45,7 @@ export class SettingsPage {
   languages: Array<LanguageModel>;
   avatars: Array<any>;
   usuarios: Array<any>;
+  imgURL: any;
   
 
   constructor(
@@ -60,7 +61,8 @@ export class SettingsPage {
     public platform: Platform,
     public firestoreService: FirebaseService,
     public afs: AngularFirestore,
-    public fAuthService: FirebaseAuthService
+    public fAuthService: FirebaseAuthService,
+    public events: Events
 
   ) {
     this.loading = this.loadingCtrl.create();
@@ -151,7 +153,7 @@ export class SettingsPage {
                  newImage => {
                    let image  = normalizeURL(newImage);
 
-                   this.profileService.setUserImage(image);
+                   //this.profileService.setUserImage(image);
                    this.profile.user.image = image;
                  },
                  error => console.error("Error cropping image", error)
@@ -183,6 +185,7 @@ export class SettingsPage {
     .then(data => {
       this.usuarios = data;
       //console.log(data.nombre);
+      this.imgURL = data.photoURL;
       this.profile.user.image = data.photoURL;
        this.settingsForm.patchValue({
         name: data.nombre,
@@ -193,22 +196,50 @@ export class SettingsPage {
     })
   }
 
+
+
   doUpdate(value){
     this.loading = this.loadingCtrl.create({
       content: 'Guardando...'
     });
+      if( this.imgURL == this.profile.user.image){
+        console.log("No cambiaste de imagene");
+        this.firestoreService.updateUser(value,this.profile.user.image)
+        .then(res => {
+          setTimeout(function(){
+              this.loading.dismiss();
+            },3000);
+          this.events.publish('user:created', value.name, this.profile.user.image);
+          console.log("Se actualizo todo");
+          }, err => {
+            console.log("Fallo la actualización")
+          })
 
-    this.loading.present();
-      setTimeout(() => {
-        this.loading.dismiss();
-      }, 3000);
+      } else {
+        console.log("SÍ cambiaste de imagene: "+this.profile.user.image);
 
-    this.firestoreService.updateUser(value)
-    .then(res => {
-      console.log("Se actualizo todo");
-      }, err => {
-        console.log("Fallo la actualización")
-      })
+        var base64 = this.profile.user.image;
+
+        this.firestoreService.uploadAvatar(base64)
+        .then(URL =>{
+
+          this.imgURL = URL;
+
+          this.firestoreService.updateUser(value,URL)
+          .then(res => {
+            setTimeout(function(){
+              this.loading.dismiss();
+            },3000);
+            
+            console.log("Se actualizo todo");
+            this.events.publish('user:created', value.name, URL);
+
+            }, err => {
+              console.log("Fallo la actualización")
+            })
+
+        })
+      }
 
   }
 
