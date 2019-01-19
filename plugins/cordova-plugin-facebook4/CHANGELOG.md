@@ -1,3 +1,40 @@
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v3.1.0)
+
+## Features
+
+* **iOS:** Update Facebook iOS SDK v4.37.0 ([#713](https://github.com/jeduan/cordova-plugin-facebook4/issues/713) | [Facebook iOS SDK changelog](https://developers.facebook.com/docs/ios/change-log-4x) | Released: 27th September 2018)
+* **Android:** Set per default usage of Facebook Android SDK v4.37.0 ([#713](https://github.com/jeduan/cordova-plugin-facebook4/issues/713) | [Facebook Android SDK changelog](https://developers.facebook.com/docs/android/change-log-4x) | Released: 27th September 2018)
+
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v3.0.0)
+
+## Features
+
+* **Android:** Update Facebook Android SDK reference to v4.36.0 (drop greedy v4.+ reference) ([#708](https://github.com/jeduan/cordova-plugin-facebook4/issues/708))
+
+### Dislaimer
+
+This release does not contains that much but we bumped up it to a major release because as of now, each release will always be published with a synchronized Facebook SDK version for iOS and for Android 
+
+<a name="2.5.0"></a>
+# [2.5.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v2.5.0)
+
+## Breaking change
+
+* **Android:** `ANDROID_SDK_VERSION` was renamed to `FACEBOOK_ANDROID_SDK_VERSION` to avoid misunderstood. This variable is use to set the Facebook SDK version for Android not the Android SDK version ([#706](https://github.com/jeduan/cordova-plugin-facebook4/issues/706))
+
+## Documentation
+
+* **Doc:** Add a note in the `README` regarding the Graph API version which is not set by the plugin itself
+
+<a name="2.4.0"></a>
+# [2.4.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v2.4.0)
+
+## Features
+
+* **iOS:** Update Facebook iOS SDK v4.36.0 ([e5c3aba](https://github.com/jeduan/cordova-plugin-facebook4/commit/e5c3abafca2fb0fe6651ab4025cb0510735fb66b) | [Facebook changelog](https://developers.facebook.com/docs/ios/change-log-4x) | Released: 30th August 2018)
+
 <a name="2.3.0"></a>
 # [2.3.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v2.3.0)
 

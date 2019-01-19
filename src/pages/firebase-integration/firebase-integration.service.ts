@@ -143,12 +143,12 @@ export class FirebaseService {
     })
   }
 
-  createConstruccion(form1, form2, form3, form4, fecha, nombre, direccion, imagenes){
+    createSolicitud(servicio,servicios, form2, form4, fecha, nombre, direccionform, pago, imagenes){
     return new Promise<any>((resolve, reject) => {
      
       var imgURLs = [];
       var resolvedPromisesArray = [];
-      
+      var today = new Date();
       let user = firebase.auth().currentUser.uid;
       let idS = this.afs.createId();
       
@@ -168,112 +168,19 @@ export class FirebaseService {
       this.afs.collection('/solicitudes').doc(idS).set({
         id : idS,
         userid: user,
-        servicio: "Construcción",
-        tiposervicio: form1.selected_servicio,
+        servicio: servicio,
+        tiposervicio: servicios,
         descripcion: form2.description2,
-        imagenes: imgURLs[0] + ","+imgURLs[1]+ ","+imgURLs[2]+ ","+imgURLs[3],
-        prioridad: form3.selected_option,
+        imagenes: imgURLs,
         fecha: fecha,
         horainicio: form4.from_time,
-        horafin: form4.to_time,
         estatus: "Pendiente de inspección",
         username: nombre,
-        direccion: direccion
-      })
-      .then(
-        res => resolve(res),
-        err => reject(err)
-      )
-
-      })
-
-      
-    })
-  }
-
-  createRemodelacion(form1, form2, form3, form4, fecha, nombre, direccion, imagenes){
-    return new Promise<any>((resolve, reject) => {
-      
-      var imgURLs = [];
-      var resolvedPromisesArray = [];
-      
-      let user = firebase.auth().currentUser.uid;
-      let idS = this.afs.createId();
-      
-
-       for (var i = 0; i < imagenes.length; i++) {
-        resolvedPromisesArray.push( this.uploadImage(imagenes[i])
-        .then(URL =>{
-          imgURLs.push(URL);
-        }));
-      }
-
-     
-      
-      // wait for all uploadTasks to be done
-      Promise.all(resolvedPromisesArray).then(() => {
-
-      this.afs.collection('/solicitudes').doc(idS).set({
-        id : idS,
-        userid: user,
-        servicio: "Remodelación",
-        tiposervicio: form1.selected_servicio,
-        descripcion: form2.description2,
-        imagenes: imgURLs[0] + ","+imgURLs[1]+ ","+imgURLs[2]+ ","+imgURLs[3],
-        prioridad: form3.selected_option,
-        fecha: fecha,
-        horainicio: form4.from_time,
-        horafin: form4.to_time,
-        estatus: "Pendiente de inspección",
-        username: nombre,
-        direccion: direccion
-      })
-      .then(
-        res => resolve(res),
-        err => reject(err)
-      )
-
-      })
-
-      
-    })
-  }
-
-  createReparacion(form1, form2, form3, form4, fecha, nombre, direccion, imagenes){
-    return new Promise<any>((resolve, reject) => {
-     
-      var imgURLs = [];
-      var resolvedPromisesArray = [];
-      
-      let user = firebase.auth().currentUser.uid;
-      let idS = this.afs.createId();
-
-       for (var i = 0; i < imagenes.length; i++) {
-        resolvedPromisesArray.push( this.uploadImage(imagenes[i])
-        .then(URL =>{
-          imgURLs.push(URL);
-        }));
-      }
-
-     
-      
-      // wait for all uploadTasks to be done
-      Promise.all(resolvedPromisesArray).then(() => {
-
-      this.afs.collection('/solicitudes').doc(idS).set({
-        id : idS,
-        userid: user,
-        servicio: "Reparación",
-        tiposervicio: form1.selected_servicio,
-        descripcion: form2.description2,
-        imagenes: imgURLs[0] + ","+imgURLs[1]+ ","+imgURLs[2]+ ","+imgURLs[3],
-        prioridad: form3.selected_option,
-        fecha: fecha,
-        horainicio: form4.from_time,
-        horafin: form4.to_time,
-        estatus: "Pendiente de inspección",
-        username: nombre,
-        direccion: direccion
+        direccion: direccionform.direccion,
+        numero: direccionform.numero,
+        fecha_creacion: today,
+        pago: pago.selected_option
+        
       })
       .then(
         res => resolve(res),
@@ -287,53 +194,7 @@ export class FirebaseService {
   }
 
 
-  createMantenimiento(form1, form2, form3, form4, fecha, nombre, direccion, imagenes){
-    return new Promise<any>((resolve, reject) => {
-     
-      var imgURLs = [];
-      var resolvedPromisesArray = [];
-      
-      let user = firebase.auth().currentUser.uid;
-      let idS = this.afs.createId();
-      
 
-       for (var i = 0; i < imagenes.length; i++) {
-        resolvedPromisesArray.push( this.uploadImage(imagenes[i])
-        .then(URL =>{
-          imgURLs.push(URL);
-        }));
-      }
-
-     
-      
-      // wait for all uploadTasks to be done
-      Promise.all(resolvedPromisesArray).then(() => {
-
-      this.afs.collection('/solicitudes').doc(idS).set({
-        id : idS,
-        userid: user,
-        servicio: "Mantenimiento",
-        tiposervicio: form1.selected_servicio,
-        descripcion: form2.description2,
-        imagenes: imgURLs[0] + ","+imgURLs[1]+ ","+imgURLs[2]+ ","+imgURLs[3],
-        prioridad: form3.selected_option,
-        fecha: fecha,
-        horainicio: form4.from_time,
-        horafin: form4.to_time,
-        estatus: "Pendiente de inspección",
-        username: nombre,
-        direccion: direccion
-      })
-      .then(
-        res => resolve(res),
-        err => reject(err)
-      )
-
-      })
-
-      
-    })
-  }
 
 
   getSolicitudes(){

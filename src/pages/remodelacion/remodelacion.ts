@@ -22,10 +22,12 @@ export class RemodelacionPage {
 	viewTitle: string;
 	servicioForm: FormGroup;
 	servicioForm2: FormGroup;
-	servicioForm3: FormGroup;
 	servicioForm4: FormGroup;
+  direccionForm: FormGroup;
+  pagoForm: FormGroup;
 	fechaSeleccionada: Date;
 	loading: any;
+  servicios: Array<string> = [];
 	pictures: Array<any> = [];
   default_img: string;
   default_img2: string;
@@ -49,25 +51,31 @@ export class RemodelacionPage {
   	) 
   {
   	this.servicioForm = new FormGroup({
-      selected_servicio: new FormControl('Remodelación de Fachada')
+      opcion_1: new FormControl(true),
+      opcion_2: new FormControl(false),
+      opcion_3: new FormControl(false),
+      opcion_4: new FormControl(false),
+      opcion_5: new FormControl(false)
     });
 
     this.servicioForm2 = new FormGroup({
       description2: new FormControl('',Validators.required)
     });
-
-    this.servicioForm3 = new FormGroup({
-  	 selected_option: new FormControl('PRIORIDAD BAJA')
-    });
-
     this.servicioForm4 = new FormGroup({
-    	from_time: new FormControl('08:00'),
-    	to_time: new FormControl('10:00')
+    	from_time: new FormControl('08:00')
+    });
+    this.direccionForm = new FormGroup({
+      direccion: new FormControl('',Validators.required),
+      numero: new FormControl('',Validators.required)
+    });
+    this.pagoForm = new FormGroup({
+      selected_option: new FormControl('Efectivo')
     });
 
     this.fechaSeleccionada = new Date();
     this.loading = this.loadingCtrl.create();
     this.pictures = []; 
+    this.servicios = [];     
     this.default_img = "././assets/images/fix_it/servicios/add-image-64.png";
     this.default_img2 = "././assets/images/fix_it/servicios/add-image-64.png";
     this.default_img3 = "././assets/images/fix_it/servicios/add-image-64.png";
@@ -208,28 +216,40 @@ export class RemodelacionPage {
       content: 'Tu solicitud esta siendo agendada...'
     });
     this.loading.present();
+
+      if(this.servicioForm.value.opcion_1){
+        this.servicios.push("Remodelación de Fachada");
+      }
+      if(this.servicioForm.value.opcion_2){
+        this.servicios.push("Remodelación de Cochera");
+      }
+      if(this.servicioForm.value.opcion_3){
+        this.servicios.push("Remodelación de Cocina");
+      }
+      if(this.servicioForm.value.opcion_4){
+        this.servicios.push("Remodelación de Dormitorio");
+      }
+      if(this.servicioForm.value.opcion_5){
+        this.servicios.push("Otros");
+      }
+
  	this.firestoreService.getDatos()
  	.then(valores =>{
 
-     this.firestoreService.createRemodelacion(
-     	this.servicioForm.value, 
-     	this.servicioForm2.value, 
-     	this.servicioForm3.value,
-     	this.servicioForm4.value, 
-     	this.fechaSeleccionada,
-     	valores.nombre,
-     	valores.direccion,
+     this.firestoreService.createSolicitud(
+      'Remodelación', 
+       this.servicios, 
+       this.servicioForm2.value,
+       this.servicioForm4.value, 
+       this.fechaSeleccionada,
+       valores.nombre,
+       this.direccionForm.value,
+       this.pagoForm.value,
       this.pictures
-     	)
+       )
     .then(data => {
       this.loading.dismiss();
-      if(this.servicioForm3.value.selected_option == "PRIORIDAD BAJA"){
-          this.presentAlert('Nos pondremos en contacto contigo en menos de 24 horas');
-        } else if(this.servicioForm3.value.selected_option == "PRIORIDAD MEDIA"){
-          this.presentAlert('Nos pondremos en contacto contigo en menos de 12 horas');
-        } else if(this.servicioForm3.value.selected_option == "PRIORIDAD ALTA"){
-          this.presentAlert('Nos pondremos en contacto contigo de inmediato');
-        }
+      this.presentAlert('Tu solicitud se agendo exitosamente. Nos pondremos en contacto contigo pronto');
     })
  	})   
 }

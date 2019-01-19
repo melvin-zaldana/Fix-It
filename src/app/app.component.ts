@@ -12,6 +12,7 @@ import { FirebaseLoginPage } from '../pages/firebase-integration/firebase-login/
 import { AgendaPage } from '../pages/agenda/agenda';
 import { EstatusPage } from '../pages/estatus/estatus';
 import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
+import { ListingPage } from '../pages/listing/listing';
 
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
@@ -21,8 +22,10 @@ import { Events } from 'ionic-angular';
 import { FcmProvider } from '../providers/fcm/fcm';
 import { Subject } from 'rxjs/Subject';
 import { tap } from 'rxjs/operators';
-
+import { FirebaseAuthService } from '../pages/firebase-integration/firebase-auth.service';
 import { Firebase } from '@ionic-native/firebase';
+
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @Component({
   selector: 'app-root',
@@ -33,11 +36,12 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make WalkthroughPage the root (or first) page
-  rootPage: any = WalkthroughPage;
+  rootPage: any;
   // rootPage: any = TabsNavigationPage;
   textDir: string = "ltr";
   nombre: string;
   photoURL: string;
+  user_data: any;
 
   pages: Array<{title: any, icon: string, component: any}>;
   pushPages: Array<{title: any, icon: string, component: any}>;
@@ -53,6 +57,8 @@ export class MyApp {
     public toastCtrl: ToastController,
     public events: Events,
     public firebase: Firebase,
+    public fAuthService: FirebaseAuthService,
+    public nativeStorage: NativeStorage,
     fcm: FcmProvider
   ) {
 
@@ -77,6 +83,30 @@ export class MyApp {
       //fcm.getToken();
 
        // Listen to incoming messages
+       this.nativeStorage.getItem('user')
+        .then(
+          data =>{
+            console.log(data);
+            this.user_data = data;
+            // this.navCtrl.setRoot(HomePage);
+            if(!this.user_data){
+                // this.rootPage = LoginPage;
+                this.rootPage = WalkthroughPage;
+                console.log("Go TO WalkthroughPage");
+            }
+            else if(this.user_data) {
+                this.rootPage = ListingPage;
+                console.log("Go TO ListenPage");
+            }
+          },error => {
+            console.error(error)
+            this.rootPage = WalkthroughPage;
+            console.log("Go TO WalkthroughPage error");
+          }
+        );
+
+
+
         fcm.listenToNotifications().pipe(
           tap(msg => {
             // show a toast
@@ -87,6 +117,8 @@ export class MyApp {
             toast.present();
           })
         ).subscribe()
+
+
 
     });
 
@@ -140,6 +172,15 @@ export class MyApp {
     // close the menu when clicking a link from the menu
     this.menu.close();
     this.app.getRootNav().push(SettingsPage);
+  }
+
+  goLogOut() {
+    this.fAuthService.doLogout();
+    // close the menu when clicking a link from the menu
+
+    this.menu.close();
+    this.nativeStorage.remove('user');
+    this.nav.setRoot(WalkthroughPage);
   }
 
   Token(){

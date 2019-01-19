@@ -15,54 +15,54 @@
 
 <ion-content class="construccion-content" padding>
 <ion-slides #formSlider >
-  	<ion-slide>
-	<ion-row>
-		<ion-col col-4></ion-col>
-		<ion-col col-4>
-			<ion-img class="icono" width="100" height="100" src="././assets/images/fix_it/servicios/construccion-icono.png"></ion-img>
-		</ion-col>
-		<ion-col col-4></ion-col>
-	</ion-row>
-	<ion-row>
-		<ion-col col-3></ion-col>
-		<ion-col text-center col-6>
-			<h2 class="heading1">Servicio de</h2>
-      		<h1 class="heading2">Construcción</h1>
-		</ion-col>
-		<ion-col col-3></ion-col>
-	</ion-row>
-	<ion-row>
-		<ion-col col-2>
-			<ion-img class="icono" width="37" height="37" src="././assets/images/fix_it/servicios/icono-servicios.png"></ion-img>
-		</ion-col>	
-		<ion-col col-10>
-			<h4 class="heading3" text-left>Servicios disponibles</h4>	
-		</ion-col>
-	</ion-row>
-
-	<form [formGroup]="servicioForm">
-		<ion-list  class="radio-group" radio-group formControlName="selected_servicio">
+    <ion-slide>
+    <ion-row>
+    <ion-col col-4></ion-col>
+    <ion-col col-4>
+    <ion-img class ="icono" width="100" height="100" src="././assets/images/fix_it/servicios/construccion-icono.png"></ion-img>
+    </ion-col>
+    <ion-col col-4></ion-col>
+    </ion-row>
+    <ion-row>
+    <ion-col col-2></ion-col>
+    <ion-col text-center col-8>
+    <h2 class ="heading1">Servicio de</h2>
+    <h1 class ="heading2">Construcción</h1>
+    </ion-col>
+    <ion-col col-2></ion-col>
+    </ion-row>
+    <ion-row>
+    <ion-col col-2>
+    <ion-img class ="icono" width="37" height="37" src="././assets/images/fix_it/servicios/icono-servicios.png"></ion-img>
+    </ion-col>	
+    <ion-col col-10>
+    <h4 class      ="heading3" text-left>Servicios disponibles</h4>	
+    </ion-col>
+    </ion-row>
+    
+    <form [formGroup]="servicioForm">
+    <ion-list class="checkbox-list">
         <ion-item class="checkbox-item">
           <ion-label>Construcción de Cochera</ion-label>
-   		 <ion-radio  value="Construcción de Cochera"></ion-radio>
+          <ion-checkbox formControlName="opcion_1"></ion-checkbox>
         </ion-item>
         <ion-item class="checkbox-item">
           <ion-label>Construcción de Terraza</ion-label>
-   		 <ion-radio  value="Construcción de Terraza"></ion-radio>
+          <ion-checkbox formControlName="opcion_2"></ion-checkbox>
         </ion-item>
         <ion-item class="checkbox-item">
           <ion-label>Construcción de Cisterna</ion-label>
-          <ion-radio  value="Construcción de Cisterna"></ion-radio>
+          <ion-checkbox formControlName="opcion_3"></ion-checkbox>
         </ion-item>
         <ion-item class="checkbox-item">
           <ion-label>Otros</ion-label>
-          <ion-radio  value="Otros"></ion-radio>
+          <ion-checkbox formControlName="opcion_4"></ion-checkbox>
         </ion-item>
       </ion-list>
-        <button ion-button block class="signup-button" (click)="next()" >Siguiente</button>
-  </form> 
-
-  </ion-slide>
+    <button ion-button block class ="signup-button" (click)="next()" >Siguiente</button>
+    </form> 
+    
+    </ion-slide>
 
   <ion-slide>
 
@@ -74,12 +74,12 @@
     <ion-col col-4></ion-col>
   </ion-row>
   <ion-row>
-    <ion-col col-3></ion-col>
-    <ion-col text-center col-6>
+    <ion-col col-2></ion-col>
+    <ion-col text-center col-8>
       <h2 class="heading1">Servicio de</h2>
           <h1 class="heading2">Construcción</h1>
     </ion-col>
-    <ion-col col-3></ion-col>
+    <ion-col col-2></ion-col>
   </ion-row>
   <ion-row>
     <ion-col col-2>
@@ -144,51 +144,103 @@
 </ion-row>
 	</ion-slide>
 
-	<ion-slide>
+    <ion-slide>
+
+      <ion-row>
+    <ion-col col-4></ion-col>
+    <ion-col col-4>
+      <ion-img class="icono" width="100" height="100" src="././assets/images/fix_it/servicios/construccion-icono.png"></ion-img>
+    </ion-col>
+    <ion-col col-4></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-2></ion-col>
+    <ion-col text-center col-8>
+      <h2 class="heading1">Servicio de</h2>
+          <h1 class="heading2">Construcción</h1>
+    </ion-col>
+    <ion-col col-2></ion-col>
+  </ion-row>
+  <ion-row> 
+    <ion-col  col-12>
+      <h4 text-center>Dirección y contacto</h4> 
+    </ion-col>
+    <ion-col  col-12 margin-bottom> 
+          <p class="heading5" text-left>Escribe la dirección donde se realizara el servicio</p>
+    </ion-col>
+    <ion-col margin-top>
+    <form [formGroup]="direccionForm">
+        <ion-row>
+        <ion-col > 
+        <ion-textarea rows="2" class="descripcion" placeholder="Escribe la dirección aquí..." formControlName="direccion"></ion-textarea>
+      </ion-col>
+      </ion-row>
+    </form> 
+  </ion-col>
+    <ion-col  col-12 margin-bottom> 
+          <p class="heading5" text-left>Escribe un número telefonico de contacto</p> 
+    </ion-col>
+    <ion-col margin-top>
+      <form [formGroup]="direccionForm">
+        <ion-row>
+      <ion-col>
+        <ion-textarea rows="1" class="descripcion" placeholder="Escribe el número de contacto..." formControlName="numero"></ion-textarea>
+      </ion-col>
+      </ion-row>
+    </form> 
+  </ion-col>
+</ion-row>
+
+<ion-row>
+<ion-col col-12>
+      <button ion-button block class="signup-button" (click)="next()" [disabled]="!direccionForm.valid">Siguiente</button>
+</ion-col>
+</ion-row>
+  </ion-slide>
+
+  <ion-slide>
     <ion-row>
-		<ion-col col-4></ion-col>
-		<ion-col col-4>
-			<ion-img class="icono" width="100" height="100" src="././assets/images/fix_it/servicios/icono-prioridad.png"></ion-img>
-		</ion-col>
-		<ion-col col-4></ion-col>
-	</ion-row>
-	<ion-row>
-		<ion-col col-3></ion-col>
-		<ion-col text-center col-6>
-			<h2 class="heading1">Nivel de</h2>
-      		<h1 class="heading2">Prioridad</h1>
-		</ion-col>
-		<ion-col col-3></ion-col>
-	</ion-row>
-	<ion-row>
-		<ion-col text-center>
-			<h4 class="heading4" text-center >Seleccione un nivel:</h4>	
-		</ion-col>
-	</ion-row>
+    <ion-col col-4></ion-col>
+    <ion-col col-4>
+      <ion-img class="icono" width="100" height="100" src="././assets/images/fix_it/servicios/construccion-icono.png"></ion-img>
+    </ion-col>
+    <ion-col col-4></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-2></ion-col>
+    <ion-col text-center col-8>
+      <h2 class="heading1">Metodo de</h2>
+          <h1 class="heading2">Pago</h1>
+    </ion-col>
+    <ion-col col-2></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col text-center>
+      <h4 class="heading4" text-center >Seleccione el metodo de pago de tu preferencia</h4> 
+    </ion-col>
+  </ion-row>
 <ion-row>
     <ion-col>
-	<form [formGroup]="servicioForm3">
-		<ion-list class="radio-group" radio-group formControlName="selected_option">
+  <form [formGroup]="pagoForm">
+    <ion-list class="radio-group" radio-group formControlName="selected_option">
 
         <ion-item>
-    	<ion-label><ion-img class="puntos" width="45" height="16" src="././assets/images/fix_it/servicios/puntos-1.png"></ion-img>PRIORIDAD ALTA</ion-label>
-   		 <ion-radio  value="PRIORIDAD ALTA"></ion-radio>
-		  </ion-item>
-  		<ion-item>
-   		 <ion-label><ion-img class="puntos" width="45" height="16" src="././assets/images/fix_it/servicios/punto-2.png"></ion-img>PRIORIDAD MEDIA</ion-label>
-    		<ion-radio  value="PRIORIDAD MEDIA" ></ion-radio>
-  		</ion-item>
-  		<ion-item>
-  		<ion-label><ion-img class="puntos" width="45" height="16" src="././assets/images/fix_it/servicios/puntos.png"></ion-img>PRIORIDAD BAJA</ion-label>
-    		<ion-radio  value="PRIORIDAD BAJA" ></ion-radio>
-  		</ion-item>
+        <ion-label icon-left><ion-icon name="cash"></ion-icon>Efectivo</ion-label>
+       <ion-radio  value="Efectivo"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>proximamente</ion-label>
+       <ion-label icon-left ><ion-icon name="card" ></ion-icon>Tarjeta de credito</ion-label>
+        <ion-radio  value="Tarjeta de credito" disabled="true"></ion-radio>
+      </ion-item>
       </ion-list>
       <button ion-button block class="signup-button" (click)="next()" >Siguiente</button>
-  	</form>
+    </form>
 </ion-col>
   </ion-row>
     
   </ion-slide>
+
 
   <ion-slide>
     <h4 class="">Agenda el día y hora de visita</h4>
@@ -209,19 +261,16 @@
       <ion-row>
   <ion-col>
        <form [formGroup]="servicioForm4" class="tiempoForm" >
-          <h4 class="">Selecciona un intervalo de tiempo</h4>
+          <h4 class="">Selecciona la hora en la que te gustaria recibir nuestra visita</h4>
           <ion-row no-padding class="multi-input-row">
-            
-            <ion-col no-padding width-50>
-              <ion-item class="multi-input time-item">
-                <ion-datetime formControlName="from_time" displayFormat="h mm a" pickerFormat="h mm A"></ion-datetime>
+
+
+            <ion-col no-padding >
+              <ion-item class="">
+                <ion-datetime formControlName="from_time" displayFormat="hh mm A" pickerFormat="HH mm" min="08:00" max="17:59"></ion-datetime>
               </ion-item>
             </ion-col>
-             <ion-col no-padding width-50>
-              <ion-item class="multi-input time-item">
-                <ion-datetime formControlName="to_time" displayFormat="h mm a" pickerFormat="h mm A"></ion-datetime>
-              </ion-item>
-            </ion-col>
+
 
           </ion-row>
       

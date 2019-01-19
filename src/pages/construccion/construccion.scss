@@ -97,25 +97,7 @@ page-construccion {
 						padding-left: 15px;
 					}
 
-					ion-radio {
-						order: 2;
-						margin-right: 22px !important;
 
-						.radio-icon
-						{
-							border-radius: 5px;
-
-							&.radio-checked .radio-inner
-							{
-								border-width: 3px;
-								border-top-width: 0px;
-								border-left-width: 0px;
-								width: 9px;
-								height: 18px;
-								top: -7px;
-							}
-						}
-					}
 				}
 		.puntos
 				{
@@ -135,7 +117,13 @@ page-construccion {
 					border-top: 0.5px solid;
 					border-bottom: 0.5px solid;
 					margin-bottom: 35px;
+
+
 				}
+		ion-datetime{
+						margin: 0 auto;
+					}
+
 	}
 
 }

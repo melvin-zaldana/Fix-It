@@ -202,13 +202,12 @@ export class SettingsPage {
     this.loading = this.loadingCtrl.create({
       content: 'Guardando...'
     });
+    this.loading.present();
       if( this.imgURL == this.profile.user.image){
         console.log("No cambiaste de imagene");
         this.firestoreService.updateUser(value,this.profile.user.image)
         .then(res => {
-          setTimeout(function(){
-              this.loading.dismiss();
-            },3000);
+          this.loading.dismiss();
           this.events.publish('user:created', value.name, this.profile.user.image);
           console.log("Se actualizo todo");
           }, err => {
@@ -227,10 +226,8 @@ export class SettingsPage {
 
           this.firestoreService.updateUser(value,URL)
           .then(res => {
-            setTimeout(function(){
-              this.loading.dismiss();
-            },3000);
-            
+           
+            this.loading.dismiss();
             console.log("Se actualizo todo");
             this.events.publish('user:created', value.name, URL);
 
@@ -240,7 +237,7 @@ export class SettingsPage {
 
         })
       }
-
+      
   }
 
 

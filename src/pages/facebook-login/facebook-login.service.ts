@@ -63,7 +63,7 @@ doFacebookLoginFirebase2(){
   doFacebookLoginFirebase(){
     return new Promise<FacebookUserModel>((resolve, reject) => {
       //["public_profile"] is the array of permissions, you can add more if you need
-      this.fb.login(["public_profile,email"]).then((response) => {
+      this.fb.login(['public_profile','email']).then((response) => {
         //Getting name, gender and email properties
         const facebookCredential = firebase.auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
 

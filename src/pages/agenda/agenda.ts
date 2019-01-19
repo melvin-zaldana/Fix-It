@@ -70,23 +70,24 @@ export class AgendaPage {
           if(!(sol.estatus === 'Cancelado' || sol.estatus === 'Realizado')){
 
           hi = sol.horainicio.split(":");
-          hf = sol.horafin.split(":");
+
 
           dateI = new Date(sol.fecha);
           dateI.setHours(hi[0]);
           dateI.setMinutes(hi[1]);
 
           dateF = new Date(sol.fecha);
-          dateF.setHours(hf[0]);
-          dateF.setMinutes(hf[1]);
+
 
          this.eventSource.push({
-            title: sol.tiposervicio,
+            title: sol.servicio,
             startTime: dateI,
             endTime: dateF,
             allDay: false,
+            tiposervicios: sol.tiposervicio,
             direccion: sol.direccion,
-            fecha: sol.fecha
+            fecha: sol.fecha,
+            description: sol.descripcion
         });
          
         }

@@ -21,10 +21,12 @@ export class ReparacionPage {
 	viewTitle: string;
 	servicioForm: FormGroup;
 	servicioForm2: FormGroup;
-	servicioForm3: FormGroup;
 	servicioForm4: FormGroup;
+  direccionForm: FormGroup;
+  pagoForm: FormGroup;
 	fechaSeleccionada: Date;
 	loading: any;
+  servicios: Array<string> = [];
 	pictures: Array<any> = [];
   default_img: string;
   default_img2: string;
@@ -48,20 +50,31 @@ export class ReparacionPage {
   	) 
   {
   	this.servicioForm = new FormGroup({
-  	  selected_servicio: new FormControl('Servicio de Albañilería')
+  	  opcion_1: new FormControl(true),
+      opcion_2: new FormControl(false),
+      opcion_3: new FormControl(false),
+      opcion_4: new FormControl(false),
+      opcion_5: new FormControl(false),
+      opcion_6: new FormControl(false),
+      opcion_7: new FormControl(false),
+      opcion_8: new FormControl(false),
+      opcion_9: new FormControl(false),
+      opcion_10: new FormControl(false)
     });
 
     this.servicioForm2 = new FormGroup({
       description2: new FormControl('',Validators.required)
     });
 
-    this.servicioForm3 = new FormGroup({
-  	 selected_option: new FormControl('PRIORIDAD BAJA')
-    });
-
     this.servicioForm4 = new FormGroup({
-    	from_time: new FormControl('08:00'),
-    	to_time: new FormControl('10:00')
+    	from_time: new FormControl('08:00')
+    });
+    this.direccionForm = new FormGroup({
+      direccion: new FormControl('',Validators.required),
+      numero: new FormControl('',Validators.required)
+    });
+    this.pagoForm = new FormGroup({
+      selected_option: new FormControl('Efectivo')
     });
 
     this.fechaSeleccionada = new Date();
@@ -208,27 +221,53 @@ export class ReparacionPage {
     });
     this.loading.present();
 
+    if(this.servicioForm.value.opcion_1){
+        this.servicios.push("Servicio de Albañilería");
+      }
+      if(this.servicioForm.value.opcion_2){
+        this.servicios.push("Servicio de Carpinteria");
+      }
+      if(this.servicioForm.value.opcion_3){
+        this.servicios.push("Servicio de Cerrajería");
+      }
+      if(this.servicioForm.value.opcion_4){
+        this.servicios.push("Servicio de Electricidad");
+      }
+      if(this.servicioForm.value.opcion_5){
+        this.servicios.push("Servicio de Fontanería");
+      }
+      if(this.servicioForm.value.opcion_6){
+        this.servicios.push("Servicio de Pintura");
+      }
+      if(this.servicioForm.value.opcion_7){
+        this.servicios.push("Servicio de Jardinería");
+      }
+      if(this.servicioForm.value.opcion_8){
+        this.servicios.push("Servicio de Vidriería");
+      }
+      if(this.servicioForm.value.opcion_9){
+        this.servicios.push("Servicio de Bombas y Cisternas");
+      }
+      if(this.servicioForm.value.opcion_10){
+        this.servicios.push("Otros");
+      }
+
  	this.firestoreService.getDatos()
  	.then(valores =>{
-     this.firestoreService.createReparacion(
-     	this.servicioForm.value, 
-     	this.servicioForm2.value, 
-     	this.servicioForm3.value,
-     	this.servicioForm4.value, 
-     	this.fechaSeleccionada,
-     	valores.nombre,
-     	valores.direccion,
+     this.firestoreService.createSolicitud(
+      'Reparación', 
+       this.servicios, 
+       this.servicioForm2.value,
+       this.servicioForm4.value, 
+       this.fechaSeleccionada,
+       valores.nombre,
+       this.direccionForm.value,
+       this.pagoForm.value,
       this.pictures
-     	)
+       )
     .then(data => {
       this.loading.dismiss();
-      if(this.servicioForm3.value.selected_option == "PRIORIDAD BAJA"){
-          this.presentAlert('Nos pondremos en contacto contigo en menos de 24 horas');
-        } else if(this.servicioForm3.value.selected_option == "PRIORIDAD MEDIA"){
-          this.presentAlert('Nos pondremos en contacto contigo en menos de 12 horas');
-        } else if(this.servicioForm3.value.selected_option == "PRIORIDAD ALTA"){
-          this.presentAlert('Nos pondremos en contacto contigo de inmediato');
-        }
+      this.presentAlert('Tu solicitud se agendo exitosamente. Nos pondremos en contacto contigo pronto');
     })
  	})   
 }

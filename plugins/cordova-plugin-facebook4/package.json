@@ -1,8 +1,8 @@
 {
   "_from": "cordova-plugin-facebook4",
-  "_id": "cordova-plugin-facebook4@2.3.0",
+  "_id": "cordova-plugin-facebook4@3.1.0",
   "_inBundle": false,
-  "_integrity": "sha512-tUzimaruJ9jGEtL96jc9HUYf5/Zg+6iVSGyUfnsEUPO51xwwJA0Hg36Fi/iccwEGO5kNChlEpmO+/FeL7XjJCQ==",
+  "_integrity": "sha512-TObjtgEFr7leLzLH8RNetdVEAfl3tN9rfLZ1jEI4dfv2gn1kLIxwP3kdyXiip3dU4YuWRVkRP2c9CwXY242bww==",
   "_location": "/cordova-plugin-facebook4",
   "_phantomChildren": {},
   "_requested": {
@@ -19,10 +19,10 @@
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-facebook4/-/cordova-plugin-facebook4-2.3.0.tgz",
-  "_shasum": "c1927dad2844e1c449f2f7177a163aa193fece87",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-facebook4/-/cordova-plugin-facebook4-3.1.0.tgz",
+  "_shasum": "e5e7ad23a0e5d48d8854c73358135c44485597bc",
   "_spec": "cordova-plugin-facebook4",
-  "_where": "C:\\Users\\Stefany\\Documents\\ion2FullApp-ELITE-version",
+  "_where": "/Users/melvinzaldanalemus/Documents/ios/Fix-It",
   "bugs": {
     "url": "https://github.com/jeduan/cordova-plugin-facebook4/issues"
   },
@@ -55,5 +55,5 @@
     "type": "git",
     "url": "git+https://github.com/jeduan/cordova-plugin-facebook4.git"
   },
-  "version": "2.3.0"
+  "version": "3.1.0"
 }

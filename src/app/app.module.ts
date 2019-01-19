@@ -122,11 +122,11 @@ export function createTranslateLoader(http: HttpClient) {
     WalkthroughPage,
     SettingsPage,
     SignupPage,
-    FollowersPage,
     ForgotPasswordPage,
     FormLayoutPage,
     TermsOfServicePage,
     PrivacyPolicyPage,
+    FollowersPage,
 
     //functionalities
     FacebookLoginPage,
@@ -187,7 +187,6 @@ export function createTranslateLoader(http: HttpClient) {
     ReparacionPage,
     MantenimientoPage,
     EstatusPage,
-    FollowersPage,
     LoginPage,
     NotificationsPage,
     ProfilePage,
@@ -195,6 +194,7 @@ export function createTranslateLoader(http: HttpClient) {
     WalkthroughPage,
     SettingsPage,
     ForgotPasswordPage,
+    FollowersPage,
     SignupPage,
     FormLayoutPage,
     TermsOfServicePage,

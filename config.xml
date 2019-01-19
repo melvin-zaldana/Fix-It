@@ -121,12 +121,12 @@
     <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <plugin name="cordova-plugin-firebase" spec="^1.0.5" />
-    <plugin name="cordova-plugin-facebook4" spec="^2.3.0">
-        <variable name="APP_ID" value="1009034272586229" />
-        <variable name="APP_NAME" value="Fix It" />
-        <variable name="ANDROID_SDK_VERSION" value="4.+" />
-    </plugin>
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.1" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
+    <plugin name="cordova-plugin-facebook4" spec="^3.1.0">
+        <variable name="APP_ID" value="1009034272586229" />
+        <variable name="APP_NAME" value="Fix It" />
+        <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.37.0" />
+    </plugin>
     <engine name="android" spec="6.3.0" />
 </widget>

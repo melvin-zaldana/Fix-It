@@ -8,6 +8,7 @@ import { FirebaseAuthService } from '../firebase-integration/firebase-auth.servi
 import { ListingPage } from '../listing/listing';
 import { Events } from 'ionic-angular';
 import { FirebaseService } from '../firebase-integration/firebase-integration.service';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class LoginPage {
     public loadingCtrl: LoadingController,
     public fAuthService: FirebaseAuthService,
     public firestoreService: FirebaseService,
-    public events: Events
+    public events: Events,
+    public nativeStorage: NativeStorage
   ) {
     //this.main_page = { component: TabsNavigationPage };
     this.main_page = { component: ListingPage };
@@ -41,7 +43,14 @@ export class LoginPage {
     .then(res =>{
       //this.nav.push(FirebaseTabsNavigationPage);
       this.loadData();
-      this.nav.setRoot(this.main_page.component);
+      this.nativeStorage.setItem('user', {email: value.email, password: value.password})
+      .then(() => {
+        console.log('Datos guardados');
+        this.nav.setRoot(this.main_page.component);
+      },
+        error => console.error('Error storing item', error)
+      );
+      
     }, err => this.errorMessage = err.message)
   }
 

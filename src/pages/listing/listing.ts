@@ -13,6 +13,10 @@ import { MantenimientoPage } from '../mantenimiento/mantenimiento';
 
 //Push notification - active app
 import { FcmProvider } from '../../providers/fcm/fcm';
+import { FirebaseAuthService } from '../firebase-integration/firebase-auth.service';
+import { FirebaseService } from '../firebase-integration/firebase-integration.service';
+import { Events } from 'ionic-angular';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @Component({
   selector: 'listing-page',
@@ -26,6 +30,10 @@ export class ListingPage {
     public nav: NavController,
     public listingService: ListingService,
     public loadingCtrl: LoadingController,
+    public fAuthService: FirebaseAuthService,
+    public firestoreService: FirebaseService,
+    public events: Events,
+    public nativeStorage: NativeStorage,
     fcm: FcmProvider
   ) {
     this.loading = this.loadingCtrl.create();
@@ -39,13 +47,49 @@ export class ListingPage {
     this.listingService
       .getData()
       .then(data => {
+
         this.listing.banner_image = data.banner_image;
         this.listing.banner_title = data.banner_title;
         this.listing.populars = data.populars;
         this.listing.categories = data.categories;
-        this.loading.dismiss();
+
+       this.nativeStorage.getItem('user')
+        .then(
+          data =>{
+            console.log(data);
+              this.fAuthService.doLogin(data)
+              .then(res =>{
+                this.loadData();
+                this.loading.dismiss();
+
+              }, err => console.log("error doLogin"))
+
+          },error => {
+            console.error(error)
+          }
+        );
+
+
+
+
       });
       
+  }
+
+  //-----Carga los valores del usuario 
+  loadData(){
+    this.firestoreService.getDatos()
+    .then(data => {
+      //this.usuarios = data;
+      //console.log(data.nombre);
+      this.createUser(data.nombre,data.photoURL);
+    })
+  }
+
+//----- metodo para pasar el nombre de usuario despues del login a app.html por medio de event
+  createUser(user,photo) {
+  console.log('User created!')
+  this.events.publish('user:created', user, photo);
   }
 
 

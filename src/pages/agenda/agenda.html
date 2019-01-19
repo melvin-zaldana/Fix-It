@@ -21,22 +21,34 @@
       <div class="event-detail-container" has-bouncing="false" *ngIf="showEventDetail" overflow-scroll="false">
                 <ion-list *ngFor="let event of selectedDate?.events" (click)="eventSelected(event)">
                         <h4 *ngIf="event.allDay" class="monthview-eventdetail-timecolumn">All day</h4>
-                       <ion-list-header class="event-detail"> {{event.title}}</ion-list-header>
+                       <ion-list-header class="event-detail" text-wrap> {{event.title}}</ion-list-header>
+                       <ion-item>
+                        <h4>Servicios solicitados </h4>
+                        <p *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn" text-wrap>{{event.tiposervicios}}
+                        </p>
+                        </ion-item>
+
                         <ion-item>
-                        <h4>Visita programada: </h4>
+                        <h4>Visita programada para: </h4>
                         <p *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">{{event.fecha |date: 'EEEE dd MMMM, yyyy'}}
                         </p>
                         </ion-item>
 
                         <ion-item>
                         <h4>Hora: </h4>
-                        <p *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">{{event.startTime|date: 'HH:mm'}} - {{event.endTime|date: 'HH:mm a'}}
+                        <p *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">{{event.startTime|date: 'hh:mm a'}}
                         </p>
                         </ion-item>
 
                         <ion-item>
                         <h4>Dirección: </h4>
                         <p *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">{{event.direccion}}
+                        </p>
+                        </ion-item>
+
+                        <ion-item>
+                        <h4>Descripción: </h4>
+                        <p *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">{{event.description}}
                         </p>
                         </ion-item>
                 </ion-list>
